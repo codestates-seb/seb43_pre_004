@@ -1,3 +1,10 @@
+/*
+ * 파일명 : MemberMapper.class
+ * 목적 : Member를 Dto로 혹은 반대로 전환해주는 클래스
+ * 파일 생성일 : 2023.04.17
+ * 마지막 편집일 : 2023.04.17
+ * 마지막 편집자 : 이호준
+ * */
 package com.SOF.backend.member.mapper;
 
 import com.SOF.backend.member.Entity.Member;
