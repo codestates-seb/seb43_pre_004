@@ -5,11 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Blob;
 import java.time.LocalDateTime;
 
@@ -25,15 +23,23 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long questionId;
 
+
+    @Column
     private String title;
 
+    @Column
     private String content;
 
-    private Blob ContentImg;
+    @Column
+    private Blob contentImg;
 
+    @Column
+    @ColumnDefault("0")
     private int viewed;
 
+    @Column
     private LocalDateTime createdAt = LocalDateTime.now();
 
+    @Column
     private LocalDateTime modifiedAt = LocalDateTime.now();
 }
