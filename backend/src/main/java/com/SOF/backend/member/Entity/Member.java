@@ -9,11 +9,23 @@
 
 package com.SOF.backend.member.Entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.util.StreamUtils;
 
 import javax.persistence.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -28,11 +40,11 @@ public class Member {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
-    private String password;
-
     @Column(nullable = false, unique = true)
     private String nickname;
+
+    @Column(nullable = false)
+    private String password;
 
     @Column
     @Lob    // 이미지를 blob 형태로 저장하는 애너테이션
@@ -49,4 +61,12 @@ public class Member {
 
     @Column(nullable = false)
     private int visited = 0;
+
+    public Member(String email, String nickname, String password, Blob image, String location) {
+        this.email = email;
+        this.nickname = nickname;
+        this.password = password;
+        this.location = location;
+    }
 }
+
