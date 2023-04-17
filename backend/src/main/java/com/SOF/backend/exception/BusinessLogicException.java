@@ -10,6 +10,10 @@
 package com.SOF.backend.exception;
 
 import lombok.Getter;
+import lombok.Setter;
+import org.springframework.stereotype.Service;
+
+
 
 public class BusinessLogicException extends RuntimeException{
     @Getter

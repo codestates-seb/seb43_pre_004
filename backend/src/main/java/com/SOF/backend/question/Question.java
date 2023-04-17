@@ -1,10 +1,7 @@
 package com.SOF.backend.question;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -12,10 +9,11 @@ import java.sql.Blob;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
 @Setter
-@NoArgsConstructor
+@Builder
+@Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Question {
 
 
@@ -38,8 +36,8 @@ public class Question {
     private int viewed;
 
     @Column
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt;
 
     @Column
-    private LocalDateTime modifiedAt = LocalDateTime.now();
+    private LocalDateTime modifiedAt;
 }
