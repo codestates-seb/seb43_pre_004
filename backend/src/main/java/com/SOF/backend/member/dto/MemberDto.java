@@ -1,10 +1,16 @@
+/*
+ * 파일명 : MemberDto.class
+ * 목적 : MemberDto를 관리하기 위한 클래스
+ * 파일 생성일 : 2023.04.17
+ * 마지막 편집일 : 2023.04.17
+ * 마지막 편집자 : 이호준
+ * */
 package com.SOF.backend.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
