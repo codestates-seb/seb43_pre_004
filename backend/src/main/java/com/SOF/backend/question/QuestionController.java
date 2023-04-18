@@ -5,17 +5,21 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 
 @RestController
 @RequestMapping("/question")
 @Slf4j
+@Validated
 public class QuestionController {
 
 
-    private QuestionService questionService;
+    private final QuestionService questionService;
 
 
 
@@ -34,7 +38,7 @@ public class QuestionController {
 
 
     @GetMapping("/{question-id}")
-    public ResponseEntity getQuestion(@PathVariable("question-id") Long questionId){
+    public ResponseEntity getQuestion(@PathVariable("question-id") @Positive Long questionId){
 
         return ResponseEntity.ok(questionService.findQuestion(questionId));
     }
@@ -54,15 +58,15 @@ public class QuestionController {
 
 
     @PostMapping("/ask")
-    public ResponseEntity creatQuestion(@RequestBody QuestionDto.Create createDto){
+    public ResponseEntity creatQuestion(@Valid @RequestBody QuestionDto.Create createDto){
 
         return new ResponseEntity(questionService.saveQuestion(createDto), HttpStatus.CREATED);
     }
 
 
     @PatchMapping("/ask/{question-id}")
-    public ResponseEntity updateQuestion(@PathVariable("question-id") Long questionId,
-                                         @RequestBody QuestionDto.Update updateDto){
+    public ResponseEntity updateQuestion(@PathVariable("question-id") @Positive Long questionId,
+                                         @Valid @RequestBody QuestionDto.Update updateDto){
 
 
         return ResponseEntity.ok(questionService.updateQuestion(questionId, updateDto));
@@ -71,7 +75,7 @@ public class QuestionController {
 
 
     @DeleteMapping("/ask/{question-id}")
-    public ResponseEntity deleteQuestion(@PathVariable("question-id") Long questionId){
+    public ResponseEntity deleteQuestion(@PathVariable("question-id") @Positive Long questionId){
 
         questionService.deleteQuestion(questionId);
 
