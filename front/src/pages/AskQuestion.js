@@ -11,15 +11,20 @@ import TextEditor from '../components/TextEditor';
 const ContainerWrapper = styled.div`
   width: 100%;
   background-color: #f8f9f9;
+
+  .quill {
+    background-color: #fff;
+  }
 `;
 
 const Container = styled.div`
   width: 100%;
   max-width: 851px;
+  margin: 0 auto; // 추가
   h1 {
     margin: 24px 0px 27px;
   }
-  background-color: #fff;
+  /* background-color: #fff; */
 `;
 
 const Notice = styled.div`
@@ -48,6 +53,7 @@ const Links = styled.span`
 `;
 
 const Title = styled.div`
+  background-color: #fff;
   /* color: red; */
   border: 1px solid #d6d9dc;
   border-radius: 3px;
@@ -65,9 +71,7 @@ const Titlesub = styled.span`
 `;
 
 const TitleInput = styled.input`
-  /* background-color: red; */
   /* border: 1px solid; */
-
   width: 100%;
   padding: 7.8px 9.1px;
   font-size: 10px;
@@ -75,6 +79,14 @@ const TitleInput = styled.input`
     border: 2px solid #a6ceed;
   }
   outline: none;
+`;
+
+const ReviewButton = styled.button`
+  color: #fff;
+  border: 1px solid #fff;
+  background-color: #0a95ff;
+  padding: 10px;
+  margin: 10px;
 `;
 
 function AskQuestion() {
@@ -141,9 +153,7 @@ function AskQuestion() {
 
         <TextEditor editorState={editorState} setEditorState={setEditorState} />
 
-        <button type="button" onClick={handleClick}>
-          Submit
-        </button>
+        <ReviewButton onClick={handleClick}>Review your question</ReviewButton>
       </Container>
     </ContainerWrapper>
   );
