@@ -20,16 +20,33 @@ public class MemberMapper {
     public Member memberPostDtoToMember(MemberDto.Post postDto){
         try {
             byte[] blobToByteArray = postDto.getBlob().getBytes(1,(int)postDto.getBlob().length());
+            return new Member(
+                    postDto.getEmail(),
+                    postDto.getNickname(),
+                    postDto.getPassword(),
+                    blobToByteArray,
+                    postDto.getLocation()
+            );
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return new Member(
-                postDto.getEmail(),
-                postDto.getNickname(),
-                postDto.getPassword(),
-                postDto.getBlob(),
-                postDto.getLocation()
-        );
+
+    }
+
+    public Member memberPatchDtoToMember(MemberDto.Patch patchDto){
+        try {
+            byte[] blobToByteArray = patchDto.getBlob().getBytes(1,(int)patchDto.getBlob().length());
+            return new Member(
+                    patchDto.getMemberId(),
+                    patchDto.getEmail(),
+                    patchDto.getNickname(),
+                    blobToByteArray,
+                    patchDto.getLocation()
+            );
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public MemberDto.Response memberToMemberResponseDto(Member member){

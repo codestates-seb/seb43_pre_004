@@ -9,23 +9,11 @@
 
 package com.SOF.backend.member.Entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.util.StreamUtils;
 
 import javax.persistence.*;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.sql.Blob;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -62,10 +50,18 @@ public class Member {
     @Column(nullable = false)
     private int visited = 0;
 
-    public Member(String email, String nickname, String password, Blob image, String location) {
+    public Member(String email, String nickname, String password, byte[] image, String location) {
         this.email = email;
         this.nickname = nickname;
         this.password = password;
+        this.location = location;
+    }
+
+    public Member(long memberId, String email, String nickname, byte[] blobToByteArray, String location) {
+        this.memberId = memberId;
+        this.email = email;
+        this.nickname = nickname;
+        this.image = blobToByteArray;
         this.location = location;
     }
 }

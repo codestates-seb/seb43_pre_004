@@ -38,6 +38,10 @@ public class MemberService {
                 .ifPresent(nickname -> findMember.setNickname(nickname));
         Optional.ofNullable(member.getImage())  // image를 byte 배열로 받아야한다.
                 .ifPresent(image -> findMember.setImage(image));
+        Optional.ofNullable(member.getEmail())
+                .ifPresent(email -> findMember.setEmail(email));
+        Optional.ofNullable(member.getLocation())
+                .ifPresent(location -> findMember.setLocation(location));
 
         findMember.setLatestLog(LocalDateTime.now());
 

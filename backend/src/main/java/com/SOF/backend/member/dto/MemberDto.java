@@ -42,6 +42,27 @@ public class MemberDto {
     }
 
     @Getter
+    @Setter
+    @Builder
+    public static class Patch{
+        private long memberId;
+
+        @NotBlank
+        private String email;
+
+        @NotBlank
+        private String nickname;
+
+        @NotBlank
+        @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$",
+                message = "비밀번호는 영대소문자, 숫자, 특수기호(!@#$%^&*)포함 8자 이상이어야 합니다.")
+        private String password;
+
+        private Blob blob;
+        private String location;
+    }
+
+    @Getter
     @AllArgsConstructor
     public static class Response{
         private long memberId;

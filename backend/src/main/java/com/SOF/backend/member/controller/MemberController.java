@@ -15,11 +15,10 @@ import com.SOF.backend.member.service.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 
 @RestController
 @Validated
@@ -40,5 +39,16 @@ public class MemberController {
 
         return new ResponseEntity<>(mapper.memberToMemberResponseDto(response),
                 HttpStatus.CREATED);
+    }
+
+    @PatchMapping("/user/profile/{user-id}")
+    public ResponseEntity patchMember(@PathVariable("user-id") @Positive long memberId,
+                                      @Valid @RequestBody MemberDto.Patch patchDto){
+        patchDto.setMemberId(memberId);
+
+        Member response = memberService.updateMember(mapper.memberPatchDtoToMember(patchDto));
+
+        return new ResponseEntity<>(mapper.memberToMemberResponseDto(response),
+                HttpStatus.OK);
     }
 }
