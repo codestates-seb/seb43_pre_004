@@ -41,14 +41,18 @@ public class MemberController {
                 HttpStatus.CREATED);
     }
 
-    @PatchMapping("/user/profile/{user-id}")
-    public ResponseEntity patchMember(@PathVariable("user-id") @Positive long memberId,
+    @PatchMapping("/user/profile/{memberId}")
+    public ResponseEntity patchMember(@PathVariable("memberId") @Positive long memberId,
                                       @Valid @RequestBody MemberDto.Patch patchDto){
         patchDto.setMemberId(memberId);
 
-        Member response = memberService.updateMember(mapper.memberPatchDtoToMember(patchDto));
+        Member member = mapper.memberPatchDtoToMember(patchDto);
+
+        Member response = memberService.updateMember(member);
 
         return new ResponseEntity<>(mapper.memberToMemberResponseDto(response),
                 HttpStatus.OK);
     }
+
+
 }

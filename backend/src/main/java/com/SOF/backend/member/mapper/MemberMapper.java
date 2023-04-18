@@ -12,13 +12,16 @@ import com.SOF.backend.member.dto.MemberDto;
 import org.springframework.stereotype.Component;
 
 import javax.sql.rowset.serial.SerialBlob;
+import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.Optional;
 
 @Component
 public class MemberMapper {
     public Member memberPostDtoToMember(MemberDto.Post postDto){
         try {
+            postDto.setImage();
             byte[] blobToByteArray = postDto.getBlob().getBytes(1,(int)postDto.getBlob().length());
             return new Member(
                     postDto.getEmail(),
@@ -27,7 +30,7 @@ public class MemberMapper {
                     blobToByteArray,
                     postDto.getLocation()
             );
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
 
@@ -35,14 +38,24 @@ public class MemberMapper {
 
     public Member memberPatchDtoToMember(MemberDto.Patch patchDto){
         try {
-            byte[] blobToByteArray = patchDto.getBlob().getBytes(1,(int)patchDto.getBlob().length());
-            return new Member(
-                    patchDto.getMemberId(),
-                    patchDto.getEmail(),
-                    patchDto.getNickname(),
-                    blobToByteArray,
-                    patchDto.getLocation()
-            );
+            if(patchDto.getBlob() != null) {
+                byte[] blobToByteArray = patchDto.getBlob().getBytes(1, (int) patchDto.getBlob().length());
+                return new Member(
+                        patchDto.getMemberId(),
+                        patchDto.getEmail(),
+                        patchDto.getNickname(),
+                        blobToByteArray,
+                        patchDto.getLocation()
+                );
+            }
+            else{
+                return new Member(
+                        patchDto.getMemberId(),
+                        patchDto.getEmail(),
+                        patchDto.getNickname(),
+                        patchDto.getLocation()
+                );
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

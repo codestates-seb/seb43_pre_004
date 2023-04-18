@@ -53,6 +53,7 @@ public class Member {
     public Member(String email, String nickname, String password, byte[] image, String location) {
         this.email = email;
         this.nickname = nickname;
+        this.image = image;
         this.password = password;
         this.location = location;
     }
@@ -62,6 +63,13 @@ public class Member {
         this.email = email;
         this.nickname = nickname;
         this.image = blobToByteArray;
+        this.location = location;
+    }
+
+    public Member(long memberId, String email, String nickname, String location) {
+        this.memberId = memberId;
+        this.email = email;
+        this.nickname = nickname;
         this.location = location;
     }
 }
