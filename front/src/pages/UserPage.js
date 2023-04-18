@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { RiPencilFill } from 'react-icons/ri';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { FaRegCalendarAlt } from 'react-icons/fa';
-import UserPageNav from '../components/UserPageNav';
-import UserPageSummary from '../components/UserPageSummary';
+import UserPageNav from '../components/userPage/UserPageNav';
+import UserPageSummary from '../components/userPage/UserPageSummary';
 
 const UserPageContainer = styled.div`
   display: flex;
