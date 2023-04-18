@@ -50,6 +50,7 @@ public class QuestionMapper {
                 .contentImg(question.getContentImg())
                 .createdAt(question.getCreatedAt())
                 .modifiedAt(question.getModifiedAt())
+                .viewed(question.getViewed())
                 .build();
 
     }

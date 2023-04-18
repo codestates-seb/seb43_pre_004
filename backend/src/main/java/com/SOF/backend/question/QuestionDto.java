@@ -59,6 +59,8 @@ public class QuestionDto {
         private LocalDateTime createdAt;
 
         private LocalDateTime modifiedAt;
+
+        private int viewed;
     }
 
     @Getter

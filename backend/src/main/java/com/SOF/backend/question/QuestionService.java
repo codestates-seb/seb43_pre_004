@@ -71,6 +71,9 @@ public class QuestionService {
     public QuestionDto.Response findQuestion(Long questionId){
           Question question = findVerifiedQuestion(questionId);
           question.setViewed(question.getViewed()+1);
+
+          questionRepository.save(question);
+
           return questionMapper.questionToResponseDto(question);
     }
 
