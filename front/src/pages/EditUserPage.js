@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { RiLinksFill } from 'react-icons/ri';
+import { BsTwitter, BsGithub } from 'react-icons/bs';
 import TextEditor from '../components/TextEditor';
 import UserPageTop from '../components/editUserPage/UserPageTop';
 import EditUserPageAside from '../components/editUserPage/EditUserPageAside';
@@ -54,6 +56,13 @@ const EditInputBox = styled.div`
     border-radius: 3px;
     margin-bottom: 8px;
   }
+`;
+
+const LinksIcon = styled.div`
+  position: absolute;
+  opacity: 50%;
+  margin-left: 10px;
+  margin-top: 7.5px;
 `;
 
 const ImageBox = styled.div`
@@ -188,14 +197,23 @@ function EditUserPage() {
           <ExtraEditBox>
             <SubInputBox>
               <p>Website link</p>
+              <LinksIcon>
+                <RiLinksFill />
+              </LinksIcon>
               <input className="linksTitle" type="text" />
             </SubInputBox>
             <SubInputBox>
               <p>Twitter link or username</p>
+              <LinksIcon>
+                <BsTwitter />
+              </LinksIcon>
               <input className="linksTitle" type="text" />
             </SubInputBox>
             <SubInputBox>
               <p>GitHub link or username</p>
+              <LinksIcon>
+                <BsGithub />
+              </LinksIcon>
               <input className="linksTitle" type="text" />
             </SubInputBox>
           </ExtraEditBox>
