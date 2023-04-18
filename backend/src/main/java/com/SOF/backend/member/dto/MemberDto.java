@@ -10,6 +10,7 @@ package com.SOF.backend.member.dto;
 import lombok.*;
 
 import javax.sql.rowset.serial.SerialBlob;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.io.IOException;
@@ -28,10 +29,11 @@ public class MemberDto {
     @Setter
     @Builder
     public static class Post{
-        @NotBlank
+        @Email
+        @NotBlank(message = "이메일은 공백으로 둘 수 없습니다.")
         private String email;
 
-        @NotBlank
+        @NotBlank(message = "별명은 공백으로 둘 수 없습니다.")
         private String nickname;
 
         @NotBlank
