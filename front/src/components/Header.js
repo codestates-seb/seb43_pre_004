@@ -28,7 +28,7 @@ const NavContent = styled.ul`
 `;
 
 const LogoImg = styled.img`
-  width: 154px;
+  max-width: 154px;
   height: 100%;
   padding: 8px;
   margin-right: 20px;
