@@ -61,4 +61,12 @@ public class MemberController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("user/profile/{user-id}","user/profile/edit/{user-id}")
+    public ResponseEntity getMember(@PathVariable("user-id") @Positive long memberId){
+        Member response = memberService.findMember(memberId);
+
+        return new ResponseEntity<>(mapper.memberToMemberResponseDto(response),
+                HttpStatus.OK);
+    }
+
 }
