@@ -12,7 +12,10 @@ package com.SOF.backend.exception;
 import lombok.Getter;
 
 public enum ExceptionCode {
-    MEMBER_NOT_FOUND(404, "Member Not Found");
+    MEMBER_NOT_FOUND(404, "Member Not Found"),
+
+    QUSETION_NOT_FOUND(404, "Question Not Found");
+
 
     @Getter
     private int status;

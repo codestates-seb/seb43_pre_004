@@ -63,7 +63,6 @@ public class QuestionController {
         return new ResponseEntity(questionService.saveQuestion(createDto), HttpStatus.CREATED);
     }
 
-
     @PatchMapping("/ask/{question-id}")
     public ResponseEntity updateQuestion(@PathVariable("question-id") @Positive Long questionId,
                                          @Valid @RequestBody QuestionDto.Update updateDto){

@@ -1,8 +1,10 @@
 package com.SOF.backend.question;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.lang.Nullable;
 
@@ -53,6 +55,8 @@ public class QuestionDto {
 
     @Getter
     @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class Response{
 
         private Long questionId;
