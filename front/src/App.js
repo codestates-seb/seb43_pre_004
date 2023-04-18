@@ -1,15 +1,16 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AskQuestion from './pages/AskQuestion';
 import GlobalStyles from './styles/GlobalStyles';
+import Search from './components/Search';
+import Header from './components/Header';
+import Login from './pages/Login';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <BrowserRouter>
+    <div className="App">
       <GlobalStyles />
-      <Routes>
-        <Route path="/askquestion" element={<AskQuestion />} />
-      </Routes>
-    </BrowserRouter>
+      <Header />
+      <Footer />
+    </div>
   );
 }
 
