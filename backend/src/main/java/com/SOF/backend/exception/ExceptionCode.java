@@ -12,7 +12,8 @@ package com.SOF.backend.exception;
 import lombok.Getter;
 
 public enum ExceptionCode {
-    MEMBER_NOT_FOUND(404, "Member Not Found");
+    MEMBER_NOT_FOUND(404, "Member Not Found"),
+    VALUE_ALREADY_EXISTS(409, "Email or Nickname already exists");
 
     @Getter
     private int status;

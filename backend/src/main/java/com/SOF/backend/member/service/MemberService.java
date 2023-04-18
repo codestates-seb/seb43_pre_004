@@ -11,6 +11,7 @@ import com.SOF.backend.exception.BusinessLogicException;
 import com.SOF.backend.exception.ExceptionCode;
 import com.SOF.backend.member.Entity.Member;
 import com.SOF.backend.member.repository.MemberRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -28,14 +29,19 @@ public class MemberService {
     }
 
     public Member createMember(Member member){
-        return memberRepository.save(member);
+        try {
+            Member returnMember = memberRepository.save(member);
+            return returnMember;
+        } catch (DataIntegrityViolationException e) {
+            throw new BusinessLogicException(ExceptionCode.VALUE_ALREADY_EXISTS);
+        }
     }
 
     public Member updateMember(Member member){
         Member findMember = findVerifiedMember(member.getMemberId());
 
         Optional.ofNullable(member.getNickname())
-                .ifPresent(nickname -> findMember.setNickname(nickname));
+                .ifPresent(name -> findMember.setNickname(name));
         Optional.ofNullable(member.getEmail())
                 .ifPresent(email -> findMember.setEmail(email));
         Optional.ofNullable(member.getLocation())
