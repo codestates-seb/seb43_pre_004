@@ -54,13 +54,14 @@ public class QuestionService {
 
     public void deleteQuestion(Long questId){
 
-        questionRepository.delete(findVerifiedQuestion(questId));
+        questionRepository.deleteById(questId);
     }
 
     public QuestionPageResponse findQuestions(int page, int size){
 
         Page<Question> questionPage = questionRepository.findAll(PageRequest.of(page, size,
                 Sort.by("questionId").descending()));
+
 
         List<Question> questions = questionPage.getContent();
 
@@ -84,30 +85,12 @@ public class QuestionService {
 
         Question findQuestion =
                 optionalQuestion.orElseThrow(() ->
-                        new BusinessLogicException(ExceptionCode.QUSETION_NOT_FOUND));
+                        new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
 
 
 
         return findQuestion;
 
     }
-
-
-
-//    public Member findVerifiedMember(long memberId) {
-//        Optional<Member> optionalMember = memberRepository.findById(memberId);
-//        Member findMember =
-//                optionalMember.orElseThrow(() ->
-//                        new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
-//        return findMember;
-//    }
-
-
-
-
-
-
-
-
 
 }

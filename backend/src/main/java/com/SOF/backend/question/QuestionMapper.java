@@ -78,6 +78,4 @@ public class QuestionMapper {
         return new QuestionDto.QuestionPageResponse(questions, page);
     }
 
-
-
 }
