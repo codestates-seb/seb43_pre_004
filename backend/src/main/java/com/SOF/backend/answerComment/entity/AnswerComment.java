@@ -1,6 +1,7 @@
 package com.SOF.backend.answerComment.entity;
 
 import com.SOF.backend.answer.entity.Answer;
+import com.SOF.backend.member.Entity.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,32 +18,32 @@ import java.time.LocalDateTime;
 public class AnswerComment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long commentId;
+    private Long answerCommentId;
 
     @Column(nullable = false)
-    private String comment;
+    private String answerComment;
     @CreatedDate
     private LocalDateTime createDate = LocalDateTime.now();
 
     @LastModifiedDate
     private LocalDateTime modifyDate = LocalDateTime.now();
 
-    //@ManyToOne
+    @ManyToOne
     @JoinColumn(name = "ANSWER_ID")
-    private Long answerId;
+    private Answer answer;
 
-    //@ManyToOne
+    @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
-    private Long memberId;
+    private Member member;
 
-    public AnswerComment(String comment, Long memberId, Long answerId) {
-        this.comment = comment;
-        this.memberId = memberId;
-        this.answerId = answerId;
+    public AnswerComment(String answerComment, Member member, Answer answer) {
+        this.answerComment = answerComment;
+        this.member = member;
+        this.answer = answer;
     }
 
-    public AnswerComment(String comment, Long commentId) {
-        this.comment = comment;
-        this.commentId = commentId;
+    public AnswerComment(String answerComment, Long answerCommentId) {
+        this.answerComment = answerComment;
+        this.answerCommentId = answerCommentId;
     }
 }

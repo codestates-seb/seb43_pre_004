@@ -29,20 +29,20 @@ public class AnswerCommentService {
 
     //답변 댓글 수정하기
     public AnswerComment updateAnswerComment(AnswerComment answerComment){
-        AnswerComment findAnswerComment = findVerifiedAnswerComment(answerComment.getCommentId());
-        Optional.ofNullable(answerComment.getComment())
-                .ifPresent(comment->findAnswerComment.setComment(comment));
+        AnswerComment findAnswerComment = findVerifiedAnswerComment(answerComment.getAnswerCommentId());
+        Optional.ofNullable(answerComment.getAnswerComment())
+                .ifPresent(comment->findAnswerComment.setAnswerComment(comment));
         AnswerComment updateAnswerComment = answerCommentRepository.save(findAnswerComment);
         return updateAnswerComment;
     }
 
     //답변 댓글 삭제하기
-    public void deleteAnswerComment(Long commentId){
-        answerCommentRepository.deleteById(commentId);
+    public void deleteAnswerComment(Long answerCommentId){
+        answerCommentRepository.deleteById(answerCommentId);
     }
 
-    private AnswerComment findVerifiedAnswerComment(Long commentId) {
-        Optional<AnswerComment> optionalQuestion = answerCommentRepository.findById(commentId);
+    private AnswerComment findVerifiedAnswerComment(Long answerCommentId) {
+        Optional<AnswerComment> optionalQuestion = answerCommentRepository.findById(answerCommentId);
         AnswerComment findAnswerComment = optionalQuestion.orElseThrow(()->
                 new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
         return findAnswerComment;
