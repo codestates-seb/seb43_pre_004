@@ -8,7 +8,7 @@ import UserPageAside from './UserPageAside';
 
 const UserSection = styled.section`
   width: 857px;
-  font-size: 13px
+  font-size: 13px;
   color: #6a737c;
 `;
 const Summary = styled.div`
