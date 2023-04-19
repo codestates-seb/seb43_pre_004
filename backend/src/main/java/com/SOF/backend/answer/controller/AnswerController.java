@@ -28,7 +28,7 @@ public class AnswerController {
 
     //답변 추가하기
     @PostMapping("/answer/{post-id}")
-    public ResponseEntity postAnswer(@PathVariable("{post-id}") Long postId,
+    public ResponseEntity postAnswer(@PathVariable("post-id") Long postId,
                                      @Valid @RequestBody AnswerPostDto answerPostDto){
         Answer answer = answerMapper.answerPostDtoToAnswer(answerPostDto);
 
@@ -39,8 +39,8 @@ public class AnswerController {
 
     //답변 수정하기
     @PatchMapping("/answer/{post-id}/{answer-id}")
-    public ResponseEntity patchAnswer(@PathVariable("/{post-id}") Long postId,
-                                      @PathVariable("/{answer-id}") Long answerId,
+    public ResponseEntity patchAnswer(@PathVariable("post-id") Long postId,
+                                      @PathVariable("answer-id") Long answerId,
                                       @Valid @RequestBody AnswerPatchDto answerPatchDto){
         answerPatchDto.setAnswerId(answerId);
 
@@ -61,8 +61,8 @@ public class AnswerController {
 
     //답변 삭제하기
     @DeleteMapping("/answer/{post-id}/{answer-id}")
-    public ResponseEntity deleteAnswer(@PathVariable("/{post-id}") Long postId,
-                                       @PathVariable("/{answer-id}") Long answerId){
+    public ResponseEntity deleteAnswer(@PathVariable("post-id") Long postId,
+                                       @PathVariable("answer-id") Long answerId){
         answerService.deleteAnswer(answerId);
 
         return ResponseEntity.noContent().build();
