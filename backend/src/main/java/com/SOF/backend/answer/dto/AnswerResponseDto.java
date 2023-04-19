@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
-
+@NoArgsConstructor
 public class AnswerResponseDto {
     private Long answerId;
     private String content;
