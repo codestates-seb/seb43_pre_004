@@ -84,7 +84,7 @@ public class QuestionService {
 
         Question findQuestion =
                 optionalQuestion.orElseThrow(() ->
-                        new BusinessLogicException(ExceptionCode.QUSETION_NOT_FOUND));
+                        new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
 
 
 

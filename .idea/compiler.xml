@@ -11,9 +11,5 @@
         <module name="com.SOF.backend.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="backend.backend.main~1" target="11" />
-      <module name="backend.backend.test~1" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>

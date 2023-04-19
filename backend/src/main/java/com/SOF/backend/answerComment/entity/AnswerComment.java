@@ -27,11 +27,11 @@ public class AnswerComment {
     @LastModifiedDate
     private LocalDateTime modifyDate = LocalDateTime.now();
 
-    @ManyToOne
+    //@ManyToOne
     @JoinColumn(name = "ANSWER_ID")
     private Long answerId;
 
-    @ManyToOne
+    //@ManyToOne
     @JoinColumn(name = "MEMBER_ID")
     private Long memberId;
 

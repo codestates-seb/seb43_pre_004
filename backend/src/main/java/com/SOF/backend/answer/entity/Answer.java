@@ -28,11 +28,11 @@ public class Answer {
     @LastModifiedDate
     private LocalDateTime modifyDate = LocalDateTime.now();
 
-    @ManyToOne
+    //@ManyToOne
     @JoinColumn(name = "QUESTION_ID")
     private Long questionId;
 
-    @ManyToOne
+    //@ManyToOne
     @JoinColumn(name = "MEMBER_ID")
     private Long memberId;
 
