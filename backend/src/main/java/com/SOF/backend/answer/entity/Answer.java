@@ -29,10 +29,21 @@ public class Answer {
     private LocalDateTime modifyDate = LocalDateTime.now();
 
     //@ManyToOne
-    //@JoinColumn(name = "QUESTION_ID")
-    //private Question questionId;
+    @JoinColumn(name = "QUESTION_ID")
+    private Long questionId;
 
     //@ManyToOne
-    //@JoinColumn(name = "MEMBER_ID")
-    //private Member memberId;
+    @JoinColumn(name = "MEMBER_ID")
+    private Long memberId;
+
+    public Answer(String content, Long memberId, Long questionId) {
+        this.content = content;
+        this.memberId = memberId;
+        this.questionId = questionId;
+    }
+
+    public Answer(String content, Long answerId) {
+        this.content = content;
+        this.answerId = answerId;
+    }
 }

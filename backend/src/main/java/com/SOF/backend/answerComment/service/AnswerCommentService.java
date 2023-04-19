@@ -14,10 +14,13 @@ import java.util.Optional;
 
 @Service
 @Transactional
-@RequiredArgsConstructor
 public class AnswerCommentService {
     private final AnswerCommentRepository answerCommentRepository;
-    private final AnswerCommentController answerComment;
+
+    public AnswerCommentService(AnswerCommentRepository answerCommentRepository) {
+        this.answerCommentRepository = answerCommentRepository;
+
+    }
 
     //답변 댓글 등록하기
     public AnswerComment createAnswerComment(AnswerComment answerComment){
