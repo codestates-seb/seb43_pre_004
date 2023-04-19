@@ -43,8 +43,8 @@ public class QuestionService {
         return questionMapper.questionToResponseDto(questionRepository.save(question));
     }
 
-    public QuestionDto.Response updateQuestion(Long questionID, QuestionDto.Update updateDto){
-        Question findquestion = findVerifiedQuestion(questionID);
+    public QuestionDto.Response updateQuestion(Long questionId, QuestionDto.Update updateDto){
+        Question findquestion = findVerifiedQuestion(questionId);
         Question question = questionMapper.updateDtoToQuestion(updateDto);
         Question updateQuestion = customBeanUtils.copyNonNullProperties(question, findquestion);
         updateQuestion.setModifiedAt(LocalDateTime.now());

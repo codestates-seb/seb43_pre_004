@@ -1,6 +1,7 @@
 package com.SOF.backend.questionComment;
 
 
+import com.SOF.backend.question.Question;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -29,5 +30,10 @@ public class QComment {
 
     @Column
     private LocalDateTime modifiedAt;
+
+    @ManyToOne
+    @JoinColumn(name = "QUESTION_ID")
+    private Question question;
+
 
 }

@@ -1,12 +1,16 @@
 package com.SOF.backend.question;
 
 
+import com.SOF.backend.member.Entity.Member;
+import com.SOF.backend.questionComment.QComment;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.sql.Blob;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Setter
@@ -40,4 +44,12 @@ public class Question {
 
     @Column
     private LocalDateTime modifiedAt;
+
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
+
+    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    private List<QComment> questionComment = new ArrayList<>();
+
 }

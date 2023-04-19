@@ -1,5 +1,8 @@
 package com.SOF.backend.questionComment;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class QCommentMapper {
 
 
