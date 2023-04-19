@@ -29,9 +29,20 @@ public class AnswerComment {
 
     @ManyToOne
     @JoinColumn(name = "ANSWER_ID")
-    private Answer answerId;
+    private Long answerId;
 
-    //@ManyToOne
-    //@JoinColumn(name = "MEMBER_ID")
-    //private Member memberId;
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    private Long memberId;
+
+    public AnswerComment(String comment, Long memberId, Long answerId) {
+        this.comment = comment;
+        this.memberId = memberId;
+        this.answerId = answerId;
+    }
+
+    public AnswerComment(String comment, Long commentId) {
+        this.comment = comment;
+        this.commentId = commentId;
+    }
 }
