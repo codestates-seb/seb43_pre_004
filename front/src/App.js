@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import GlobalStyles from './styles/GlobalStyles';
 import Search from './components/header/Search';
 import Header from './components/header/Header';
 import Login from './pages/Login';
@@ -10,6 +9,7 @@ import EditUserPage from './pages/EditUserPage';
 import Questions from './pages/Questions';
 import LeftSidebar from './components/LeftSidebar';
 import EditPost from './pages/EditPost';
+import SignUp from './pages/SignUp';
 
 const MainBody = styled.div`
   display: flex;
@@ -19,12 +19,11 @@ const MainBody = styled.div`
 function App() {
   return (
     <div className="App">
-      <GlobalStyles />
-      <Header />
-      <MainBody>
-        <LeftSidebar />
-      </MainBody>
-      <Footer />
+      <SignUp />
+      {/* <Header /> */}
+      {/* <Login /> */}
+      {/* <Footer /> */}
+      {/* <AskQuestion /> */}
     </div>
   );
 }
