@@ -14,7 +14,7 @@ import lombok.Getter;
 public enum ExceptionCode {
     MEMBER_NOT_FOUND(404, "Member Not Found"),
 
-    QUSETION_NOT_FOUND(404, "Question Not Found"),
+    QUESTION_NOT_FOUND(404, "Question Not Found"),
 
     VALUE_ALREADY_EXISTS(409, "Email or Nickname already exists");
 
