@@ -9,12 +9,17 @@
 
 package com.SOF.backend.member.Entity;
 
+import com.SOF.backend.answer.entity.Answer;
+import com.SOF.backend.answerComment.entity.AnswerComment;
+import com.SOF.backend.question.Question;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -50,6 +55,15 @@ public class Member {
     @Column(nullable = false)
     private int visited = 0;
 
+    @OneToMany(mappedBy = "member")
+    private List<Question> questions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    private List<Answer> answers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    private List<AnswerComment> answerComments = new ArrayList<>();
+
     public Member(String email, String nickname, String password, byte[] image, String location) {
         this.email = email;
         this.nickname = nickname;
@@ -71,6 +85,18 @@ public class Member {
         this.email = email;
         this.nickname = nickname;
         this.location = location;
+    }
+
+    public void addQuestion(Question question){
+        questions.add(question);
+    }
+
+    public void addAnswer(Answer answer){
+        answers.add(answer);
+    }
+
+    public void addAnswerComment(AnswerComment answerComment){
+        answerComments.add(answerComment);
     }
 }
 
