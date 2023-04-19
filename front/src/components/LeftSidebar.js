@@ -17,7 +17,7 @@ const Ul = styled.ul`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 8px 6px 8px 4px;
+    /* padding: 8px 6px 8px 4px; */
     height: 26px;
     :not(:nth-child(2n + 3)):hover {
       color: #0c0d0e;
@@ -30,7 +30,7 @@ const Ul = styled.ul`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 16px 12px 0px 0px;
+    margin: 16px 12px 4px 5px;
     font-size: 11px;
   }
 `;
@@ -78,7 +78,7 @@ const Button = styled.button`
   border: none;
   border-radius: 3px;
   margin-top: 24px;
-  padding: 8px;
+  padding: 6px;
   width: 155px;
   height: 31px;
   font-size: 12px;
@@ -120,7 +120,7 @@ function LeftSidebar() {
           {/* <li className="global"></li> */}
           <li className="global-tab">
             <GlobalIcon className="icon" />
-            Questions
+            &nbsp;&nbsp;Questions
           </li>
           {/* </NavStyle> */}
           <li>Tags</li>
@@ -132,6 +132,7 @@ function LeftSidebar() {
           <IconInfoSm />
         </li>
         <li className="nav-tab">
+          &nbsp;
           <IconStar />
           <span>Explore Collectives</span>
         </li>
@@ -140,6 +141,7 @@ function LeftSidebar() {
           <IconInfoSm />
         </li>
         <li className="nav-tab">
+          &nbsp;
           <IconBox>
             <LetterIcon />
           </IconBox>
