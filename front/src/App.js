@@ -9,9 +9,11 @@ import UserPage from './pages/UserPage';
 import EditUserPage from './pages/EditUserPage';
 import Questions from './pages/Questions';
 import LeftSidebar from './components/LeftSidebar';
+import EditPost from './pages/EditPost';
 
 const MainBody = styled.div`
   display: flex;
+  justify-content: center;
 `;
 
 function App() {
@@ -21,7 +23,6 @@ function App() {
       <Header />
       <MainBody>
         <LeftSidebar />
-        <EditUserPage />
       </MainBody>
       <Footer />
     </div>
