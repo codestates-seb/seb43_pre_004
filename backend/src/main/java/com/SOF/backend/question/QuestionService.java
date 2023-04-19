@@ -7,8 +7,6 @@ import com.SOF.backend.exception.ExceptionCode;
 import com.SOF.backend.question.QuestionDto.QuestionPageResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Sort;
 
@@ -43,8 +41,8 @@ public class QuestionService {
         return questionMapper.questionToResponseDto(questionRepository.save(question));
     }
 
-    public QuestionDto.Response updateQuestion(Long questionID, QuestionDto.Update updateDto){
-        Question findquestion = findVerifiedQuestion(questionID);
+    public QuestionDto.Response updateQuestion(Long questionId, QuestionDto.Update updateDto){
+        Question findquestion = findVerifiedQuestion(questionId);
         Question question = questionMapper.updateDtoToQuestion(updateDto);
         Question updateQuestion = customBeanUtils.copyNonNullProperties(question, findquestion);
         updateQuestion.setModifiedAt(LocalDateTime.now());
@@ -54,13 +52,14 @@ public class QuestionService {
 
     public void deleteQuestion(Long questId){
 
-        questionRepository.delete(findVerifiedQuestion(questId));
+        questionRepository.deleteById(questId);
     }
 
     public QuestionPageResponse findQuestions(int page, int size){
 
         Page<Question> questionPage = questionRepository.findAll(PageRequest.of(page, size,
                 Sort.by("questionId").descending()));
+
 
         List<Question> questions = questionPage.getContent();
 
@@ -91,23 +90,5 @@ public class QuestionService {
         return findQuestion;
 
     }
-
-
-
-//    public Member findVerifiedMember(long memberId) {
-//        Optional<Member> optionalMember = memberRepository.findById(memberId);
-//        Member findMember =
-//                optionalMember.orElseThrow(() ->
-//                        new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
-//        return findMember;
-//    }
-
-
-
-
-
-
-
-
 
 }

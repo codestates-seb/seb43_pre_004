@@ -51,6 +51,7 @@ public class QuestionMapper {
                 .createdAt(question.getCreatedAt())
                 .modifiedAt(question.getModifiedAt())
                 .viewed(question.getViewed())
+                .questionComment(question.getQuestionComment())
                 .build();
 
     }
@@ -77,7 +78,5 @@ public class QuestionMapper {
 
         return new QuestionDto.QuestionPageResponse(questions, page);
     }
-
-
 
 }

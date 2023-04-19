@@ -29,7 +29,8 @@ public class QuestionController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity getQuestionList(@RequestParam int page, @RequestParam int size){
+    public ResponseEntity getQuestionList(@RequestParam(value = "page", defaultValue = "1") int page,
+                                          @RequestParam(value = "size", defaultValue = "15") int size){
 
         QuestionDto.QuestionPageResponse questionPage = questionService.findQuestions(page -1, size);
 

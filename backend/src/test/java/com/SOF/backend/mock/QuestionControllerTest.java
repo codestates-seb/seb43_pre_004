@@ -1,4 +1,4 @@
-package com.SOF.backend;
+package com.SOF.backend.mock;
 
 
 import com.SOF.backend.question.QuestionController;
@@ -13,7 +13,6 @@ import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.test.web.servlet.MockMvc;
 import com.google.gson.Gson;
 import org.mockito.Mockito;
-import org.springframework.test.web.servlet.ResultActions;
 
 import java.time.LocalDateTime;
 
@@ -23,7 +22,7 @@ import static org.mockito.BDDMockito.given;
 @WebMvcTest(QuestionController.class)
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
-public class QuestionTest {
+public class QuestionControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
