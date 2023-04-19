@@ -1,5 +1,8 @@
 package com.SOF.backend.answer.dto;
 
+import com.SOF.backend.answer.entity.Answer;
+import com.SOF.backend.member.Entity.Member;
+import com.SOF.backend.question.Question;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +21,7 @@ public class AnswerResponseDto {
     private String content;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
-    private Long questionId;
-    private Long memberId;
+    private Question questionId;
+    private Member memberId;
 }
 
