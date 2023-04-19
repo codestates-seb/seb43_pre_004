@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/comment/answer")
+@RequestMapping("/")
 @Validated
 public class AnswerCommentController {
     private final AnswerCommentMapper answerCommentMapper;
