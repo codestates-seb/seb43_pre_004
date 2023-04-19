@@ -29,11 +29,10 @@ public class AnswerCommentController {
     @PostMapping("/comment")
     public ResponseEntity postAnswerComment(@Valid @RequestBody AnswerCommentPostDto answerCommentPostDto){
         AnswerComment answerComment = answerCommentMapper.answerCommentPostDtoToAnswerComment(answerCommentPostDto);
-        AnswerComment responseContent = answerCommentService.createAnswerComment(answerComment);
 
-        AnswerCommentResponseDto response = answerCommentMapper.answerCommentToAnswerCommentResponseDto(responseContent);
+        AnswerComment response = answerCommentService.createAnswerComment(answerComment);
 
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(answerCommentMapper.answerCommentToAnswerCommentResponseDto(response), HttpStatus.CREATED);
     }
 
     //답변 댓글 수정하기
@@ -41,13 +40,13 @@ public class AnswerCommentController {
     public ResponseEntity patchAnswerComment(@PathVariable("answer-id") Long answerId,
                                              @PathVariable("comment-id") Long commentId,
                                              @Valid @RequestBody AnswerCommentPatchDto answerCommentPatchDto){
-        answerCommentPatchDto.setAnswerCommentId(commentId);
+        answerCommentPatchDto.setCommentId(commentId);
+
         AnswerComment answerComment = answerCommentMapper.answerCommentPatchDtoToAnswerComment(answerCommentPatchDto);
-        AnswerComment responseContent = answerCommentService.updateAnswerComment(answerComment);
 
-        AnswerCommentResponseDto response = answerCommentMapper.answerCommentToAnswerCommentResponseDto(responseContent);
+        AnswerComment response = answerCommentService.updateAnswerComment(answerComment);
 
-        return new ResponseEntity<>(response,HttpStatus.OK);
+        return new ResponseEntity<>(answerCommentMapper.answerCommentToAnswerCommentResponseDto(response),HttpStatus.OK);
     }
 
     @DeleteMapping("/comment/{answer-id}/{comment-id}")

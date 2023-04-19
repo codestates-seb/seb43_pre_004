@@ -32,10 +32,9 @@ public class AnswerController {
                                      @Valid @RequestBody AnswerPostDto answerPostDto){
         Answer answer = answerMapper.answerPostDtoToAnswer(answerPostDto);
 
-        Answer responseContent = answerService.createAnswer(answer);
-        AnswerResponseDto response = answerMapper.answerToAnswerResponseDto(responseContent);
+        Answer response = answerService.createAnswer(answer);
 
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(answerMapper.answerToAnswerResponseDto(response), HttpStatus.CREATED);
     }
 
     //답변 수정하기
@@ -44,19 +43,20 @@ public class AnswerController {
                                       @PathVariable("/{answer-id}") Long answerId,
                                       @Valid @RequestBody AnswerPatchDto answerPatchDto){
         answerPatchDto.setAnswerId(answerId);
-        Answer answer = answerMapper.answerPatchDtoToAnswer(answerPatchDto);
-        AnswerResponseDto response = answerMapper.answerToAnswerResponseDto(answer);
 
-        return new ResponseEntity(response,HttpStatus.OK);
+        Answer answer = answerMapper.answerPatchDtoToAnswer(answerPatchDto);
+
+        Answer response = answerService.updateAnswer(answer);
+
+        return new ResponseEntity(answerMapper.answerToAnswerResponseDto(response),HttpStatus.OK);
     }
 
     //답변 조회하기
     @GetMapping("/answer/{answer-id}/edit")
     public ResponseEntity getAnswer(@PathVariable("answer-id") Long answerId){
-        Answer answers = answerService.findAnswer(answerId);
-        AnswerResponseDto response = answerMapper.answerToAnswerResponseDto(answers);
+        Answer response = answerService.findAnswer(answerId);
 
-        return new ResponseEntity(response,HttpStatus.OK);
+        return new ResponseEntity(answerMapper.answerToAnswerResponseDto(response),HttpStatus.OK);
     }
 
     //답변 삭제하기
