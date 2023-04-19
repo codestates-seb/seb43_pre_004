@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Search from './Search';
-import logo from '../image/logo.png';
+import logo from '../../image/logo.png';
 
 const StyledHeader = styled.header`
   position: sticky;
