@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FcGoogle } from 'react-icons/fc';
 import { RiShareBoxFill } from 'react-icons/ri';
-import Header from '../components/Header';
+import Header from '../components/header/Header';
 import Captcha from '../components/Captcha';
 import Footer from '../components/Footer';
 import { ReactComponent as singquestion } from '../image/signQuestion.svg';

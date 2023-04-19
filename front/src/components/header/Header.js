@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import Search from './Search';
-import logo from '../image/logo.png';
+import logo from '../../image/logo.png';
 
 const StyledHeader = styled.header`
   position: sticky;
   top: 0;
   width: 100%;
-  min-width: 800px;
   height: 47px;
   z-index: 10;
   border-top: 3px solid #f48225;
@@ -23,7 +22,7 @@ const NavContent = styled.ul`
   color: #232629;
   display: flex;
   height: 100%;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -43,14 +42,23 @@ const NavText = styled.li`
   text-align: center;
   height: 30px;
   width: auto;
-  padding: 0 8px;
+  padding: 0px 8px;
   margin-right: 4px;
   line-height: 30px;
-  gap: 10px
+  gap: 10px;
   cursor: pointer;
   :hover {
     background-color: #e4e5e7;
     border-radius: 20px;
+  }
+  @media screen and (max-width: 1210px) {
+    width: auto;
+    padding: 0px;
+    #hiden {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 455px) {
   }
 `;
 
@@ -97,13 +105,17 @@ function Header() {
         </a>
         <NavTextBox>
           <NavText>
-            <a href="https://stackoverflow.co/">About</a>
+            <a href="https://stackoverflow.co/" id="hiden">
+              About
+            </a>
           </NavText>
           <NavText>
             <a href="https://stackoverflow.co/">Products</a>
           </NavText>
           <NavText>
-            <a href="https://stackoverflow.co/teams/">For Teams</a>
+            <a href="https://stackoverflow.co/teams/" id="hiden">
+              For Teams
+            </a>
           </NavText>
         </NavTextBox>
         <Search />

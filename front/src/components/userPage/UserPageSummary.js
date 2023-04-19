@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { ReactComponent as UserFeed } from '../image/userFeed.svg';
-import { ReactComponent as SpotReputation } from '../image/spotReputation.svg';
-import { ReactComponent as SpotBadge } from '../image/spotBadge.svg';
-import { ReactComponent as SpotAstronaut } from '../image/spotAstronaut.svg';
+import { ReactComponent as UserFeed } from '../../image/userFeed.svg';
+import { ReactComponent as SpotReputation } from '../../image/spotReputation.svg';
+import { ReactComponent as SpotBadge } from '../../image/spotBadge.svg';
+import { ReactComponent as SpotAstronaut } from '../../image/spotAstronaut.svg';
 import UserPagePanel from './UserPagePanel';
 import UserPageAside from './UserPageAside';
 
