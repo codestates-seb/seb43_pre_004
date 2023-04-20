@@ -13,9 +13,7 @@ public class AnswerMapper {
             return null;
         }
         return new Answer(
-                answerPostDto.getContent(),
-                answerPostDto.getMemberId(),
-                answerPostDto.getQuestionId()
+                answerPostDto.getContent()
         );
     }
     public Answer answerPatchDtoToAnswer(AnswerPatchDto answerPatchDto){
@@ -37,7 +35,8 @@ public class AnswerMapper {
                 response.getCreateDate(),
                 response.getModifyDate(),
                 response.getQuestion(),
-                response.getMember()
+                response.getMember(),
+                response.getAnswerComments()
         );
     }
 }
