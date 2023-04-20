@@ -36,7 +36,7 @@ public class Member {
     @Column(nullable = false, unique = true)
     private String nickname;
 
-    @Column(nullable = false)
+    @Column(length = 100, nullable = false)
     private String password;
 
     @Column
