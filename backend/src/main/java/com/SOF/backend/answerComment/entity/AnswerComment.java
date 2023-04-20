@@ -1,6 +1,7 @@
 package com.SOF.backend.answerComment.entity;
 
 import com.SOF.backend.answer.entity.Answer;
+import com.SOF.backend.answerComment.dto.AnswerCommentResponseDto;
 import com.SOF.backend.member.Entity.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -21,7 +23,7 @@ public class AnswerComment {
     private Long answerCommentId;
 
     @Column(nullable = false)
-    private String answerComment;
+    private String comment;
     @CreatedDate
     private LocalDateTime createDate = LocalDateTime.now();
 
@@ -36,14 +38,20 @@ public class AnswerComment {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    public AnswerComment(String answerComment, Member member, Answer answer) {
-        this.answerComment = answerComment;
-        this.member = member;
-        this.answer = answer;
+
+
+    public AnswerComment(String comment) {
+        this.comment = comment;
     }
 
-    public AnswerComment(String answerComment, Long answerCommentId) {
-        this.answerComment = answerComment;
+    public AnswerComment(String comment, Long answerCommentId) {
+        this.comment = comment;
         this.answerCommentId = answerCommentId;
+    }
+    public void addAnswer(Answer answer){
+        this.answer = answer;
+        if (!this.answer.getAnswerComments().contains(this)){
+            this.answer.getAnswerComments().add(this);
+        }
     }
 }
