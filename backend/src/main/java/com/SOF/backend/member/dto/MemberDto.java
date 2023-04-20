@@ -43,6 +43,10 @@ public class MemberDto {
 
         private Blob blob;
         private String location;
+        private String webLink;
+        private String twitterLink;
+        private String githubLink;
+        private String realName;
 
         public void setImage() throws IOException, SQLException {
             // 파일을 바이트 배열로 읽어옴
@@ -70,7 +74,10 @@ public class MemberDto {
 
         private Blob blob;
         private String location;
-
+        private String webLink;
+        private String twitterLink;
+        private String githubLink;
+        private String realName;
     }
 
     @Getter
@@ -81,6 +88,10 @@ public class MemberDto {
         private String nickname;
         private Blob blob;
         private String location;
+        private String webLink;
+        private String twitterLink;
+        private String githubLink;
+        private String realName;
         private LocalDateTime createdDate;
         private LocalDateTime latestLog;
         private int visited;

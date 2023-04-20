@@ -18,7 +18,11 @@ public enum ExceptionCode {
 
     VALUE_ALREADY_EXISTS(409, "Email or Nickname already exists"),
 
-    COMMENT_NOT_FOUND(404, "Comment Not Found");
+    COMMENT_NOT_FOUND(404, "Comment Not Found"),
+
+    EMAIL_ALREADY_EXISTS(409, "Email is already exists"),
+    NICKNAME_ALREADY_EXISTS(409,"Nickname is already exists");
+
 
     @Getter
     private int status;

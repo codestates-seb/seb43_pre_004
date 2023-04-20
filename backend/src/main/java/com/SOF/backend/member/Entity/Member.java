@@ -46,6 +46,18 @@ public class Member {
     @Column
     private String location;
 
+    @Column
+    private String webLink;
+
+    @Column
+    private String twitterLink;
+
+    @Column
+    private String githubLink;
+
+    @Column
+    private String realName;
+
     @Column(nullable = false)
     private LocalDateTime createdDate = LocalDateTime.now();
 
@@ -64,27 +76,46 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<AnswerComment> answerComments = new ArrayList<>();
 
-    public Member(String email, String nickname, String password, byte[] image, String location) {
+
+    public Member(String email, String nickname, String password,
+                  byte[] image, String location, String webLink,
+                  String twitterLink, String githubLink, String realName) {
+        this.email = email;
+        this.nickname = nickname;
+        this.password = password;
+        this.image = image;
+        this.location = location;
+        this.webLink = webLink;
+        this.twitterLink = twitterLink;
+        this.githubLink = githubLink;
+        this.realName = realName;
+    }
+
+    public Member(Long memberId, String email, String nickname,
+                  byte[] image, String location, String webLink,
+                  String twitterLink, String githubLink, String realName) {
+        this.memberId = memberId;
         this.email = email;
         this.nickname = nickname;
         this.image = image;
-        this.password = password;
         this.location = location;
+        this.webLink = webLink;
+        this.twitterLink = twitterLink;
+        this.githubLink = githubLink;
+        this.realName = realName;
     }
 
-    public Member(long memberId, String email, String nickname, byte[] blobToByteArray, String location) {
+    public Member(Long memberId, String email, String nickname,
+                  String location, String webLink, String twitterLink,
+                  String githubLink, String realName) {
         this.memberId = memberId;
         this.email = email;
         this.nickname = nickname;
-        this.image = blobToByteArray;
         this.location = location;
-    }
-
-    public Member(long memberId, String email, String nickname, String location) {
-        this.memberId = memberId;
-        this.email = email;
-        this.nickname = nickname;
-        this.location = location;
+        this.webLink = webLink;
+        this.twitterLink = twitterLink;
+        this.githubLink = githubLink;
+        this.realName = realName;
     }
 
     public void addQuestion(Question question){
