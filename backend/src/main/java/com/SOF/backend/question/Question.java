@@ -1,6 +1,7 @@
 package com.SOF.backend.question;
 
 
+import com.SOF.backend.answer.entity.Answer;
 import com.SOF.backend.member.Entity.Member;
 import com.SOF.backend.questionComment.QComment;
 import lombok.*;
@@ -51,5 +52,8 @@ public class Question {
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     private List<QComment> questionComment = new ArrayList<>();
+
+    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    private List<Answer> answers = new ArrayList<>();
 
 }
