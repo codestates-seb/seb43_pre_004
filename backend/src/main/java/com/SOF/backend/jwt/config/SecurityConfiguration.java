@@ -1,9 +1,13 @@
 package com.SOF.backend.jwt.config;
 
+import com.SOF.backend.jwt.auth.JwtTokenizer;
+import com.SOF.backend.jwt.auth.filter.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -16,6 +20,12 @@ import java.util.Arrays;
 
 @Configuration
 public class SecurityConfiguration {
+    private final JwtTokenizer jwtTokenizer;
+
+    public SecurityConfiguration(JwtTokenizer jwtTokenizer) {
+        this.jwtTokenizer = jwtTokenizer;
+    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity https) throws Exception {
         https
@@ -25,6 +35,8 @@ public class SecurityConfiguration {
                 .cors(Customizer.withDefaults())
                 .formLogin().disable()
                 .httpBasic().disable()
+                .apply(new CustomFilterConfigurer())
+                .and()
                 .authorizeHttpRequests(authorize -> authorize
                         .anyRequest().permitAll()
                 );
@@ -45,5 +57,17 @@ public class SecurityConfiguration {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**",configuration);
         return source;
+    }
+
+    public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {
+        @Override
+        public void configure(HttpSecurity builder) throws Exception {
+            AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
+
+            JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
+            jwtAuthenticationFilter.setFilterProcessesUrl("/v11/auth/login");
+
+            builder.addFilter(jwtAuthenticationFilter);
+        }
     }
 }

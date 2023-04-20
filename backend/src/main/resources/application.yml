@@ -10,7 +10,7 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
-  jwt:
-    key: ${JWT_SECRET_KEY}
-    access-token-expiration-minutes: 30
-    refresh-token-expiration-minutes: 420
+jwt:
+  key: TheKeyIsSensitiveInformationSoYouShouldChangeItLaterUsingTheEnvironmentalVariablesOfTheOS
+  access-token-expiration-minutes: 30
+  refresh-token-expiration-minutes: 420
