@@ -2,6 +2,9 @@ package com.SOF.backend.answer.entity;
 
 
 import com.SOF.backend.answerComment.entity.AnswerComment;
+import com.SOF.backend.member.Entity.Member;
+import com.SOF.backend.question.Question;
+import com.SOF.backend.questionComment.QComment;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,19 +36,21 @@ public class Answer {
 
     @ManyToOne
     @JoinColumn(name = "QUESTION_ID")
-    private Long questionId;
+    private Question question;
 
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
-    private Long memberId;
+    private Member member;
 
+    //@OneToMany(mappedBy = "answer")
+    //private List<AnswerComment> answerComments = new ArrayList<>();
     @OneToMany(mappedBy = "answer")
     private List<AnswerComment> answerComments = new ArrayList<>();
 
-    public Answer(String content, Long memberId, Long questionId) {
+    public Answer(String content, Member member, Question question) {
         this.content = content;
-        this.memberId = memberId;
-        this.questionId = questionId;
+        this.member = member;
+        this.question = question;
     }
 
     public Answer(String content, Long answerId) {

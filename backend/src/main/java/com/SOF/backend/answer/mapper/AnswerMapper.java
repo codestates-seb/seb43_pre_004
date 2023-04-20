@@ -36,8 +36,8 @@ public class AnswerMapper {
                 response.getContent(),
                 response.getCreateDate(),
                 response.getModifyDate(),
-                response.getQuestionId(),
-                response.getMemberId()
+                response.getQuestion(),
+                response.getMember()
         );
     }
 }
