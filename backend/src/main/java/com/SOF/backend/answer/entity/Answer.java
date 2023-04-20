@@ -1,6 +1,10 @@
 package com.SOF.backend.answer.entity;
 
 
+import com.SOF.backend.answerComment.entity.AnswerComment;
+import com.SOF.backend.member.Entity.Member;
+import com.SOF.backend.question.Question;
+import com.SOF.backend.questionComment.QComment;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,6 +13,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -28,18 +34,23 @@ public class Answer {
     @LastModifiedDate
     private LocalDateTime modifyDate = LocalDateTime.now();
 
-    //@ManyToOne
+    @ManyToOne
     @JoinColumn(name = "QUESTION_ID")
-    private Long questionId;
+    private Question question;
 
-    //@ManyToOne
+    @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
-    private Long memberId;
+    private Member member;
 
-    public Answer(String content, Long memberId, Long questionId) {
+    //@OneToMany(mappedBy = "answer")
+    //private List<AnswerComment> answerComments = new ArrayList<>();
+    @OneToMany(mappedBy = "answer")
+    private List<AnswerComment> answerComments = new ArrayList<>();
+
+    public Answer(String content, Member member, Question question) {
         this.content = content;
-        this.memberId = memberId;
-        this.questionId = questionId;
+        this.member = member;
+        this.question = question;
     }
 
     public Answer(String content, Long answerId) {

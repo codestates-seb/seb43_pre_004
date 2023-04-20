@@ -1,5 +1,6 @@
 package com.SOF.backend.answer.dto;
 
+import com.SOF.backend.answer.entity.Answer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

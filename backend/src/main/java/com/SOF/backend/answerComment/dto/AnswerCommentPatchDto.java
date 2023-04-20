@@ -1,5 +1,6 @@
 package com.SOF.backend.answerComment.dto;
 
+import com.SOF.backend.answerComment.entity.AnswerComment;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 public class AnswerCommentPatchDto {
     @NotEmpty(message = "공백이 아니어야 합니다.")
-    private String comment;
-    private Long commentId;
+    private String answerComment;
+    private Long answerCommentId;
 
 }
