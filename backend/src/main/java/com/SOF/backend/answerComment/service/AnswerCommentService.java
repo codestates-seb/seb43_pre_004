@@ -30,8 +30,8 @@ public class AnswerCommentService {
     //답변 댓글 수정하기
     public AnswerComment updateAnswerComment(AnswerComment answerComment){
         AnswerComment findAnswerComment = findVerifiedAnswerComment(answerComment.getAnswerCommentId());
-        Optional.ofNullable(answerComment.getAnswerComment())
-                .ifPresent(comment->findAnswerComment.setAnswerComment(comment));
+        Optional.ofNullable(answerComment.getComment())
+                .ifPresent(comment->findAnswerComment.setComment(comment));
         AnswerComment updateAnswerComment = answerCommentRepository.save(findAnswerComment);
         return updateAnswerComment;
     }
