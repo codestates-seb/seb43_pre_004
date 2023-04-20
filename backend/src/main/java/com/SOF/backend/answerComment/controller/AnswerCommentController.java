@@ -37,9 +37,9 @@ public class AnswerCommentController {
     }
 
     //답변 댓글 수정하기
-    @PatchMapping("/{answer-id}/{comment-id}")
+    @PatchMapping("/{answer-id}/{answerComment-id}")
     public ResponseEntity patchAnswerComment(@PathVariable("answer-id") Long answerId,
-                                             @PathVariable("comment-id") Long answerCommentId,
+                                             @PathVariable("answerComment-id") Long answerCommentId,
                                              @Valid @RequestBody AnswerCommentPatchDto answerCommentPatchDto){
         answerCommentPatchDto.setAnswerCommentId(answerCommentId);
 
@@ -51,9 +51,9 @@ public class AnswerCommentController {
     }
 
 
-    @DeleteMapping("/{answer-id}/{comment-id}")
+    @DeleteMapping("/{answer-id}/{answerComment-id}")
     public ResponseEntity deleteAnswerComment(@PathVariable("answer-id") Long answerId,
-                                              @PathVariable("comment-id") Long answerCommentId){
+                                              @PathVariable("answerComment-id") Long answerCommentId){
         answerCommentService.deleteAnswerComment(answerCommentId);
 
         return ResponseEntity.noContent().build();
