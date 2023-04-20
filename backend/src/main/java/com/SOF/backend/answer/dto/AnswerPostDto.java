@@ -17,6 +17,4 @@ import javax.validation.constraints.NotEmpty;
 public class AnswerPostDto {
     @NotEmpty(message = "공백이 아니어야 합니다.")
     private String content;
-    private Member memberId;
-    private Question questionId;
 }
