@@ -12,6 +12,7 @@ package com.SOF.backend.member.Entity;
 import com.SOF.backend.answer.entity.Answer;
 import com.SOF.backend.answerComment.entity.AnswerComment;
 import com.SOF.backend.question.Question;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -55,6 +56,7 @@ public class Member {
     @Column(nullable = false)
     private int visited = 0;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Question> questions = new ArrayList<>();
 
@@ -88,14 +90,17 @@ public class Member {
     }
 
     public void addQuestion(Question question){
+
         questions.add(question);
     }
 
     public void addAnswer(Answer answer){
+
         answers.add(answer);
     }
 
     public void addAnswerComment(AnswerComment answerComment){
+
         answerComments.add(answerComment);
     }
 }
