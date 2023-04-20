@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/answer")
 @Validated
 public class AnswerController {
     private final AnswerService answerService;
@@ -27,7 +27,7 @@ public class AnswerController {
     }
 
     //답변 추가하기
-    @PostMapping("/answer/{post-id}")
+    @PostMapping("/{post-id}")
     public ResponseEntity postAnswer(@PathVariable("post-id") Long postId,
                                      @Valid @RequestBody AnswerPostDto answerPostDto){
         Answer answer = answerMapper.answerPostDtoToAnswer(answerPostDto);
@@ -38,7 +38,7 @@ public class AnswerController {
     }
 
     //답변 수정하기
-    @PatchMapping("/answer/{post-id}/{answer-id}")
+    @PatchMapping("/{post-id}/{answer-id}")
     public ResponseEntity patchAnswer(@PathVariable("post-id") Long postId,
                                       @PathVariable("answer-id") Long answerId,
                                       @Valid @RequestBody AnswerPatchDto answerPatchDto){
@@ -52,7 +52,7 @@ public class AnswerController {
     }
 
     //답변 조회하기
-    @GetMapping("/answer/{answer-id}/edit")
+    @GetMapping("/{answer-id}/edit")
     public ResponseEntity getAnswer(@PathVariable("answer-id") Long answerId){
         Answer response = answerService.findAnswer(answerId);
 
@@ -60,7 +60,7 @@ public class AnswerController {
     }
 
     //답변 삭제하기
-    @DeleteMapping("/answer/{post-id}/{answer-id}")
+    @DeleteMapping("/{post-id}/{answer-id}")
     public ResponseEntity deleteAnswer(@PathVariable("post-id") Long postId,
                                        @PathVariable("answer-id") Long answerId){
         answerService.deleteAnswer(answerId);
