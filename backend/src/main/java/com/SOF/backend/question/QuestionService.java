@@ -22,12 +22,12 @@ public class QuestionService {
 
     private final QuestionMapper questionMapper;
 
+
+
     private final CustomBeanUtils<Question> customBeanUtils;
 
 
-    public QuestionService(QuestionRepository questionRepository,
-                           QuestionMapper questionMapper,
-                           CustomBeanUtils<Question> customBeanUtils) {
+    public QuestionService(QuestionRepository questionRepository, QuestionMapper questionMapper, CustomBeanUtils<Question> customBeanUtils) {
         this.questionRepository = questionRepository;
         this.questionMapper = questionMapper;
         this.customBeanUtils = customBeanUtils;
@@ -37,6 +37,7 @@ public class QuestionService {
 
         Question question = questionMapper.createDtoToQuestion(createDto);
         question.setCreatedAt(LocalDateTime.now());
+        //bountyChecker(question);
 
         return questionMapper.questionToResponseDto(questionRepository.save(question));
     }
@@ -44,6 +45,7 @@ public class QuestionService {
     public QuestionDto.Response updateQuestion(Long questionId, QuestionDto.Update updateDto){
         Question findquestion = findVerifiedQuestion(questionId);
         Question question = questionMapper.updateDtoToQuestion(updateDto);
+        //bountyChecker(question);
         Question updateQuestion = customBeanUtils.copyNonNullProperties(question, findquestion);
         updateQuestion.setModifiedAt(LocalDateTime.now());
 
@@ -70,7 +72,6 @@ public class QuestionService {
     public QuestionDto.Response findQuestion(Long questionId){
           Question question = findVerifiedQuestion(questionId);
           question.setViewed(question.getViewed()+1);
-
           questionRepository.save(question);
 
           return questionMapper.questionToResponseDto(question);
@@ -90,5 +91,11 @@ public class QuestionService {
         return findQuestion;
 
     }
+
+//    public void bountyChecker(Question question){
+//        if (question.getBounty() / 50 != 0 ){
+//            throw new BusinessLogicException(ExceptionCode.BOUNTY_AMOUNT_ERROR);
+//        }
+//    }
 
 }

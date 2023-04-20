@@ -27,7 +27,6 @@ public class MemberDto {
 
     @Getter
     @Setter
-    @Builder
     public static class Post{
         @Email
         @NotBlank(message = "이메일은 공백으로 둘 수 없습니다.")
