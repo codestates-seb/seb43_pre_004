@@ -45,7 +45,7 @@ public class MemberDto {
 
         public void setImage() throws IOException, SQLException {
             // 파일을 바이트 배열로 읽어옴
-            byte[] imageBytes = Files.readAllBytes(Paths.get("src","main","resources","pictures","default-image.png"));
+            byte[] imageBytes = Files.readAllBytes(Paths.get("backend","src","main","resources","pictures","default-image.png"));
 
             // 바이트 배열을 Blob으로 변환
             Blob blob = new SerialBlob(imageBytes);
