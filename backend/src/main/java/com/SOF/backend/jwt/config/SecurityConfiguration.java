@@ -2,6 +2,8 @@ package com.SOF.backend.jwt.config;
 
 import com.SOF.backend.jwt.auth.JwtTokenizer;
 import com.SOF.backend.jwt.auth.filter.JwtAuthenticationFilter;
+import com.SOF.backend.jwt.auth.handler.MemberAuthenticationFailureHandler;
+import com.SOF.backend.jwt.auth.handler.MemberAuthenticationSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -66,6 +68,8 @@ public class SecurityConfiguration {
 
             JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
             jwtAuthenticationFilter.setFilterProcessesUrl("/login/connection"); // 로그인 시 URL
+            jwtAuthenticationFilter.setAuthenticationSuccessHandler(new MemberAuthenticationSuccessHandler());
+            jwtAuthenticationFilter.setAuthenticationFailureHandler(new MemberAuthenticationFailureHandler());
 
             builder.addFilter(jwtAuthenticationFilter);
         }
