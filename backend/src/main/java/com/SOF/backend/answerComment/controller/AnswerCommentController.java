@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/answerComment")
 @Validated
 public class AnswerCommentController {
     private final AnswerCommentMapper answerCommentMapper;
@@ -26,8 +26,9 @@ public class AnswerCommentController {
     }
 
     //답변에 댓글 추가하기
-    @PostMapping("/comment")
-    public ResponseEntity postAnswerComment(@Valid @RequestBody AnswerCommentPostDto answerCommentPostDto){
+    @PostMapping("/{answer-id}")
+    public ResponseEntity postAnswerComment(@PathVariable("answer-id") Long answerId,
+                                            @Valid @RequestBody AnswerCommentPostDto answerCommentPostDto){
         AnswerComment answerComment = answerCommentMapper.answerCommentPostDtoToAnswerComment(answerCommentPostDto);
 
         AnswerComment response = answerCommentService.createAnswerComment(answerComment);
@@ -36,7 +37,7 @@ public class AnswerCommentController {
     }
 
     //답변 댓글 수정하기
-    @PatchMapping("/comment/{answer-id}/{comment-id}")
+    @PatchMapping("/{answer-id}/{comment-id}")
     public ResponseEntity patchAnswerComment(@PathVariable("answer-id") Long answerId,
                                              @PathVariable("comment-id") Long answerCommentId,
                                              @Valid @RequestBody AnswerCommentPatchDto answerCommentPatchDto){
@@ -50,7 +51,7 @@ public class AnswerCommentController {
     }
 
 
-    @DeleteMapping("/comment/{answer-id}/{comment-id}")
+    @DeleteMapping("/{answer-id}/{comment-id}")
     public ResponseEntity deleteAnswerComment(@PathVariable("answer-id") Long answerId,
                                               @PathVariable("comment-id") Long answerCommentId){
         answerCommentService.deleteAnswerComment(answerCommentId);

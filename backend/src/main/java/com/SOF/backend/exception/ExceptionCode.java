@@ -20,9 +20,7 @@ public enum ExceptionCode {
 
     COMMENT_NOT_FOUND(404, "Comment Not Found"),
 
-    EMAIL_ALREADY_EXISTS(409, "Email is already exists"),
-    NICKNAME_ALREADY_EXISTS(409,"Nickname is already exists");
-
+    BOUNTY_AMOUNT_ERROR(400, "Bounty must be a multiple of 50");
 
     @Getter
     private int status;

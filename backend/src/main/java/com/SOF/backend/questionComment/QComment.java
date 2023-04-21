@@ -36,4 +36,11 @@ public class QComment {
     private Question question;
 
 
+    public void addQuestion(Question question){
+        this.question = question;
+        if(!this.question.getComments().contains(this)){
+            this.question.getComments().add(this);
+        }
+    }
+
 }

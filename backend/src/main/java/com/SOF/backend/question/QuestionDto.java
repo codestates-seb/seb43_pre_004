@@ -1,7 +1,6 @@
 package com.SOF.backend.question;
 
 import com.SOF.backend.questionComment.QComment;
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,9 +8,14 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.lang.Nullable;
 
+import javax.sql.rowset.serial.SerialBlob;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -34,7 +38,22 @@ public class QuestionDto {
         private String content;
 
         @Nullable
+        private int bounty;
+
+
+
         private Blob contentImg;
+
+        public void setImage() throws IOException, SQLException {
+            // 파일을 바이트 배열로 읽어옴
+            byte[] imageBytes = Files.readAllBytes(Paths.get("src","main","resources","pictures","default-image.png"));
+
+            // 바이트 배열을 Blob으로 변환
+            Blob contentImg = new SerialBlob(imageBytes);
+
+            // Dto 객체에 Blob 객체 설정
+            this.contentImg = contentImg;
+        }
 
     }
 
@@ -46,6 +65,7 @@ public class QuestionDto {
 
         private String title;
 
+        private int bounty;
 
         private String content;
 
@@ -71,9 +91,13 @@ public class QuestionDto {
 
         private LocalDateTime modifiedAt;
 
+        private int bounty;
+
+        private int answerCnt;
+
         private int viewed;
 
-        private List<QComment> questionComment;
+        private List<QComment> comments;
     }
 
     @Getter
@@ -87,7 +111,5 @@ public class QuestionDto {
                     page.getSize(), page.getTotalElements(), page.getTotalPages());
         }
     }
-
-
 
 }

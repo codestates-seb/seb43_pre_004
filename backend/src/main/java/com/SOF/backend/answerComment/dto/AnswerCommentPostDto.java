@@ -15,7 +15,5 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 public class AnswerCommentPostDto {
     @NotEmpty(message = "공백이 아니어야 합니다.")
-    private String answerComment;
-    private Member memberId;
-    private Answer answerId;
+    private String comment;
 }

@@ -4,7 +4,7 @@ package com.SOF.backend.answer.entity;
 import com.SOF.backend.answerComment.entity.AnswerComment;
 import com.SOF.backend.member.Entity.Member;
 import com.SOF.backend.question.Question;
-import com.SOF.backend.questionComment.QComment;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -42,19 +42,24 @@ public class Answer {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    //@OneToMany(mappedBy = "answer")
-    //private List<AnswerComment> answerComments = new ArrayList<>();
+    @JsonIgnore
     @OneToMany(mappedBy = "answer")
     private List<AnswerComment> answerComments = new ArrayList<>();
 
-    public Answer(String content, Member member, Question question) {
+
+    public Answer(String content) {
         this.content = content;
-        this.member = member;
-        this.question = question;
     }
 
     public Answer(String content, Long answerId) {
         this.content = content;
         this.answerId = answerId;
     }
+    public void addComment(AnswerComment comment){
+        answerComments.add(comment);
+        if (comment.getAnswer() != this){
+            comment.setAnswer(this);
+        }
+    }
+
 }

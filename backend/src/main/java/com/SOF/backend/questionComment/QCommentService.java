@@ -40,16 +40,12 @@ public class QCommentService {
     
 
     public QCommentDto.Response saveQComment(Long questionId, QCommentDto.Create createDto){
-        Question question= questionService.findVerifiedQuestion(questionId);
         QComment qComment = qCommentMapper.createDtoToQComent(createDto);
         qComment.setCreatedAt(LocalDateTime.now());
-        List<QComment> questionComments = question.getQuestionComment();
-        questionComments.add(qComment);
-        questionRepository.save(question);
+        qComment.addQuestion(questionService.findVerifiedQuestion(questionId));
         qCommentRepository.save(qComment);
+
         return qCommentMapper.qCommentToResponse(qComment);
-
-
     }
 
 
@@ -59,7 +55,6 @@ public class QCommentService {
         QComment updateComment = qCommentMapper.updateDtoToQComment(updateDto);
         QComment response = customBeanUtils.copyNonNullProperties(updateComment, findComment);
         response.setModifiedAt(LocalDateTime.now());
-
         return qCommentMapper.qCommentToResponse(qCommentRepository.save(response));
 
 

@@ -14,9 +14,7 @@ public class AnswerCommentMapper {
             return null;
         }
         return new AnswerComment(
-                answerCommentPostDto.getAnswerComment(),
-                answerCommentPostDto.getMemberId(),
-                answerCommentPostDto.getAnswerId()
+                answerCommentPostDto.getComment()
         );
     }
     public AnswerComment answerCommentPatchDtoToAnswerComment(AnswerCommentPatchDto answerCommentPatchDto){
@@ -24,7 +22,7 @@ public class AnswerCommentMapper {
             return null;
         }
         return new AnswerComment(
-                answerCommentPatchDto.getAnswerComment(),
+                answerCommentPatchDto.getComment(),
                 answerCommentPatchDto.getAnswerCommentId()
         );
     }
@@ -34,7 +32,7 @@ public class AnswerCommentMapper {
         }
         return new AnswerCommentResponseDto(
                 response.getAnswerCommentId(),
-                response.getAnswerComment(),
+                response.getComment(),
                 response.getCreateDate(),
                 response.getModifyDate(),
                 response.getAnswer(),
