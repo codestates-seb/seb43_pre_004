@@ -3,11 +3,14 @@ package com.SOF.backend.jwt.config;
 import com.SOF.backend.jwt.auth.JwtTokenizer;
 import com.SOF.backend.jwt.auth.filter.JWtVerificationFilter;
 import com.SOF.backend.jwt.auth.filter.JwtAuthenticationFilter;
+import com.SOF.backend.jwt.auth.handler.MemberAccessDeniedHandler;
+import com.SOF.backend.jwt.auth.handler.MemberAuthenticationEntryPoint;
 import com.SOF.backend.jwt.auth.handler.MemberAuthenticationFailureHandler;
 import com.SOF.backend.jwt.auth.handler.MemberAuthenticationSuccessHandler;
 import com.SOF.backend.jwt.auth.utils.CustomAuthorityUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -44,9 +47,18 @@ public class SecurityConfiguration {
                 .and()
                 .formLogin().disable()
                 .httpBasic().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(new MemberAuthenticationEntryPoint())
+                .accessDeniedHandler(new MemberAccessDeniedHandler())
+                .and()
                 .apply(new CustomFilterConfigurer())
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
+                        .antMatchers(HttpMethod.POST, "/*/signup").permitAll()
+                        .antMatchers(HttpMethod.PATCH, "/*/user/profile/**").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/*/user/profile/**").permitAll()
+                        .antMatchers(HttpMethod.GET, "/*/user/profile/edit/**").hasAnyRole("USER","ADMIN")
+                        .antMatchers(HttpMethod.DELETE, "/*/user/profile/**").hasRole("USER")
                         .anyRequest().permitAll()
                 );
         return https.build();
