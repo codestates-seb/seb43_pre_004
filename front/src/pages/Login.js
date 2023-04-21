@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FcGoogle } from 'react-icons/fc';
-import { RiShareBoxFill } from 'react-icons/ri';
 import logoIcon from '../image/logo-icon.png';
+import OauthButton from '../components/login/OauthButton';
+import BottomText from '../components/login/BottomText';
 
 const LoginPage = styled.div`
-  height: 95vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,27 +13,25 @@ const LoginPage = styled.div`
   background-color: #f1f2f3;
 `;
 
-const LogoIcon = styled.img`
-  width: 32px;
-  height: 37px;
-`;
-
-const GoogleOauthButton = styled.button`
+const OauthButtonBox = styled.div`
   width: 289px;
   height: 38px;
+  border: none;
+  background-color: #fff;
   border: 1px solid #d5d7da;
   border-radius: 5px;
-  background-color: #ffffff;
-  margin-bottom: 24px;
-  margin-top: 30px;
+  margin: 30px 0px 24px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #3b4045;
-  font-size: 13px;
   :hover {
     background-color: #f8f9f9;
   }
+`;
+
+const LogoIcon = styled.img`
+  width: 32px;
+  height: 37px;
 `;
 
 const LoginInputBox = styled.form`
@@ -91,35 +89,15 @@ const LoginButton = styled.button`
   }
 `;
 
-const BottomTextBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 24px;
-  padding: 16px;
-  font-size: 13px;
-  text-align: center;
-  > .mt-12 {
-    margin-top: 12px;
-  }
-`;
-
-const SmallText = styled.div`
-  color: #232629;
-  > a {
-    color: #0074cc;
-  }
-`;
-
 function Login() {
   return (
     <LoginPage>
       <a href="https://stackoverflow.com">
         <LogoIcon src={logoIcon} alt="stackoverflow" />
       </a>
-      <GoogleOauthButton type="button">
-        <FcGoogle />
-        &nbsp;Log in with Google
-      </GoogleOauthButton>
+      <OauthButtonBox>
+        <OauthButton btnName="Log in" />
+      </OauthButtonBox>
       <LoginInputBox>
         <span>Email</span>
         <input type="email" />
@@ -132,18 +110,7 @@ function Login() {
         <input type="password" />
         <LoginButton type="button">Log in</LoginButton>
       </LoginInputBox>
-      <BottomTextBox>
-        <SmallText>
-          <span> Don&apos;t have an account? </span>
-          <a href="https://stackoverflow.com/users/signup?ssrc=head">Sign up</a>
-        </SmallText>
-        <SmallText className="mt-12">
-          <span>Are you an employer? </span>
-          <a href="https://talent.stackoverflow.com/users/login">
-            Sign up on Talent <RiShareBoxFill />
-          </a>
-        </SmallText>
-      </BottomTextBox>
+      <BottomText />
     </LoginPage>
   );
 }

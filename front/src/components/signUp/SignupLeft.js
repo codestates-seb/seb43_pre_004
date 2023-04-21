@@ -25,18 +25,21 @@ const SignReputation = styled(signreputation)`
   margin: -2px 10px 0 0;
 `;
 
-const Signexplanation = styled.div`
+const SignExplanation = styled.div`
   width: 421.328px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0px 48px 128px 0px;
+  color: #232629;
 `;
-const Signhead = styled.h1`
+
+const SignHead = styled.h1`
   font-size: 27px;
   margin-bottom: 32px;
 `;
-const Signimgtext = styled.div`
+
+const SignImgText = styled.div`
   display: flex;
   font-size: 15px;
   margin-bottom: 24px;
@@ -44,7 +47,7 @@ const Signimgtext = styled.div`
 
 const SmallText = styled.div`
   font-size: 13px;
-  color: #232629;
+  color: #6a737c;
   > a {
     color: #0074cc;
   }
@@ -52,24 +55,24 @@ const SmallText = styled.div`
 
 function SignupLeft() {
   return (
-    <Signexplanation>
-      <Signhead>Join the Stack Overflow community</Signhead>
-      <Signimgtext>
+    <SignExplanation>
+      <SignHead>Join the Stack Overflow community</SignHead>
+      <SignImgText>
         <SingQuestion />
         Get unstuck — ask a question
-      </Signimgtext>
-      <Signimgtext>
+      </SignImgText>
+      <SignImgText>
         <SingLike />
         Unlock new privileges like voting and commenting
-      </Signimgtext>
-      <Signimgtext>
+      </SignImgText>
+      <SignImgText>
         <SingTags />
         Save your favorite questions, answers, watch tags, and more
-      </Signimgtext>
-      <Signimgtext>
+      </SignImgText>
+      <SignImgText>
         <SignReputation />
         Earn reputation and badges
-      </Signimgtext>
+      </SignImgText>
       <SmallText>
         Collaborate and share knowledge with a private group for FREE.
         <br />
@@ -77,7 +80,7 @@ function SignupLeft() {
           Get Stack Overflow for Teams free for up to 50 users.
         </a>
       </SmallText>
-    </Signexplanation>
+    </SignExplanation>
   );
 }
 

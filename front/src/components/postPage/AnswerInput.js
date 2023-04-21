@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import BlueButton from './BlueButton';
 import TextEditor from '../TextEditor';
 
-const AnwerContainer = styled.div`
+const AnswerContainer = styled.div`
   width: 727px;
   margin-bottom: 70px;
   > h2 {
@@ -21,15 +21,15 @@ const ButtonWrapper = styled.div`
 
 function Answer() {
   return (
-    <AnwerContainer>
+    <AnswerContainer>
       <h2>Your Answer</h2>
       <div>
         <TextEditor />
       </div>
       <ButtonWrapper>
-        <BlueButton text="Post Your Answer" size="126px" />
+        <BlueButton text="Post Your Answer" size="128.91px" />
       </ButtonWrapper>
-    </AnwerContainer>
+    </AnswerContainer>
   );
 }
 

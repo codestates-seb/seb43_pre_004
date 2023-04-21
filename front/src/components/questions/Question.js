@@ -19,6 +19,7 @@ const PostColumn = styled.div`
   font-size: 13px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: end;
   margin-right: 16px;
   .vote {
@@ -116,7 +117,6 @@ function Question() {
     <PostBox>
       <MainContent>
         <PostColumn>
-          <p className="vote">1 vote</p>
           <p className="answer">1 answer</p>
           <p className="views"> 132 views</p>
           <p className="bounty">&#43; 100</p>
