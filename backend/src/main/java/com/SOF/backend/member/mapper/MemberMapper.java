@@ -28,7 +28,11 @@ public class MemberMapper {
                     postDto.getNickname(),
                     postDto.getPassword(),
                     blobToByteArray,
-                    postDto.getLocation()
+                    postDto.getLocation(),
+                    postDto.getWebLink(),
+                    postDto.getTwitterLink(),
+                    postDto.getGithubLink(),
+                    postDto.getRealName()
             );
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
@@ -45,7 +49,11 @@ public class MemberMapper {
                         patchDto.getEmail(),
                         patchDto.getNickname(),
                         blobToByteArray,
-                        patchDto.getLocation()
+                        patchDto.getLocation(),
+                        patchDto.getWebLink(),
+                        patchDto.getTwitterLink(),
+                        patchDto.getGithubLink(),
+                        patchDto.getRealName()
                 );
             }
             else{
@@ -53,7 +61,11 @@ public class MemberMapper {
                         patchDto.getMemberId(),
                         patchDto.getEmail(),
                         patchDto.getNickname(),
-                        patchDto.getLocation()
+                        patchDto.getLocation(),
+                        patchDto.getWebLink(),
+                        patchDto.getTwitterLink(),
+                        patchDto.getGithubLink(),
+                        patchDto.getRealName()
                 );
             }
         } catch (SQLException e) {
@@ -71,6 +83,10 @@ public class MemberMapper {
                     member.getNickname(),
                     byteArrayToBlob,
                     member.getLocation(),
+                    member.getWebLink(),
+                    member.getTwitterLink(),
+                    member.getGithubLink(),
+                    member.getRealName(),
                     member.getCreatedDate(),
                     member.getLatestLog(),
                     member.getVisited()

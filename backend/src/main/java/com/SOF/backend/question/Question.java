@@ -56,7 +56,7 @@ public class Question {
     private LocalDateTime modifiedAt;
 
     @ManyToOne
-    @JoinColumn(name = "MEMBER_ID")
+    @JoinColumn(name = "member_id")
     private Member member;
 
     @JsonIgnore
@@ -87,8 +87,4 @@ public class Question {
             answer.setQuestion(this);
         }
     }
-
-
-
-
 }
