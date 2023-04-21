@@ -10,6 +10,7 @@ import Questions from './pages/Questions';
 import LeftSidebar from './components/LeftSidebar';
 import EditPost from './pages/EditPost';
 import SignUp from './pages/SignUp';
+import AnswerEdit from './pages/AnswerEdit';
 
 const MainBody = styled.div`
   display: flex;
@@ -19,11 +20,10 @@ const MainBody = styled.div`
 function App() {
   return (
     <div className="App">
-      <SignUp />
-      {/* <Header /> */}
-      {/* <Login /> */}
-      {/* <Footer /> */}
-      {/* <AskQuestion /> */}
+      <Header />
+      {/* <AnswerEdit /> */}
+      <AnswerEdit />
+      <Footer />
     </div>
   );
 }
