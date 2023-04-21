@@ -2,6 +2,7 @@ package com.SOF.backend.jwt.auth.userdetails;
 
 import com.SOF.backend.exception.BusinessLogicException;
 import com.SOF.backend.exception.ExceptionCode;
+import com.SOF.backend.jwt.auth.utils.CustomAuthorityUtils;
 import com.SOF.backend.member.Entity.Member;
 import com.SOF.backend.member.repository.MemberRepository;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,9 +17,12 @@ import java.util.Optional;
 @Component
 public class MemberDetailsService implements UserDetailsService {
     private final MemberRepository memberRepository;
+    private final CustomAuthorityUtils authorityUtils;
 
-    public MemberDetailsService(MemberRepository memberRepository) {
+    public MemberDetailsService(MemberRepository memberRepository,
+                                CustomAuthorityUtils authorityUtils) {
         this.memberRepository = memberRepository;
+        this.authorityUtils = authorityUtils;
     }
 
     @Override
@@ -40,11 +44,12 @@ public class MemberDetailsService implements UserDetailsService {
             setTwitterLink(member.getTwitterLink());
             setGithubLink(member.getGithubLink());
             setRealName(member.getRealName());
+            setRoles(member.getRoles());
         }
 
         @Override
         public Collection<? extends GrantedAuthority> getAuthorities() {
-            return null;
+            return authorityUtils.createAuthorities(this.getRoles());
         }
 
         @Override

@@ -67,6 +67,9 @@ public class Member {
     @Column(nullable = false)
     private int visited = 0;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
+
     @OneToMany(mappedBy = "member")
     private List<Question> questions = new ArrayList<>();
 

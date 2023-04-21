@@ -9,6 +9,8 @@ package com.SOF.backend.member.service;
 
 import com.SOF.backend.exception.BusinessLogicException;
 import com.SOF.backend.exception.ExceptionCode;
+import com.SOF.backend.jwt.auth.utils.CustomAuthorityUtils;
+import com.SOF.backend.jwt.helper.MemberRegistrationApplicationEvent;
 import com.SOF.backend.member.Entity.Member;
 import com.SOF.backend.member.repository.MemberRepository;
 import org.springframework.context.ApplicationEventPublisher;
@@ -20,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,13 +30,16 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final ApplicationEventPublisher publisher;
     private final PasswordEncoder passwordEncoder;
+    private final CustomAuthorityUtils authorityUtils;
 
     public MemberService(MemberRepository memberRepository,
                          ApplicationEventPublisher publisher,
-                         PasswordEncoder passwordEncoder) {
+                         PasswordEncoder passwordEncoder,
+                         CustomAuthorityUtils authorityUtils) {
         this.memberRepository = memberRepository;
         this.publisher = publisher;
         this.passwordEncoder = passwordEncoder;
+        this.authorityUtils = authorityUtils;
     }
 
     public Member createMember(Member member){
@@ -44,8 +50,11 @@ public class MemberService {
             String encryptedPassword = passwordEncoder.encode(member.getPassword());
             member.setPassword(encryptedPassword);
 
+            List<String> roles = authorityUtils.createRoles(member.getEmail());
+            member.setRoles(roles);
+
             Member returnMember = memberRepository.save(member);
-            //publisher.publishEvent(new MemberRegistrationApplicationEvent(this, savedMember));
+            publisher.publishEvent(new MemberRegistrationApplicationEvent(this, returnMember));
             return returnMember;
         } catch (DataIntegrityViolationException e) {
             throw new BusinessLogicException(ExceptionCode.VALUE_ALREADY_EXISTS);
