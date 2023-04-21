@@ -4,9 +4,13 @@ package com.SOF.backend.question;
 import com.SOF.backend.Utils.CustomBeanUtils;
 import com.SOF.backend.exception.BusinessLogicException;
 import com.SOF.backend.exception.ExceptionCode;
+import com.SOF.backend.member.repository.MemberRepository;
+import com.SOF.backend.member.service.MemberService;
 import com.SOF.backend.question.QuestionDto.QuestionPageResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Sort;
 
@@ -16,26 +20,24 @@ import java.util.Optional;
 
 
 @Service
+@RequiredArgsConstructor
 public class QuestionService {
 
     private final QuestionRepository questionRepository;
 
     private final QuestionMapper questionMapper;
 
-
-
     private final CustomBeanUtils<Question> customBeanUtils;
 
+    private final MemberService memberService;
 
-    public QuestionService(QuestionRepository questionRepository, QuestionMapper questionMapper, CustomBeanUtils<Question> customBeanUtils) {
-        this.questionRepository = questionRepository;
-        this.questionMapper = questionMapper;
-        this.customBeanUtils = customBeanUtils;
-    }
 
-    public QuestionDto.Response saveQuestion(QuestionDto.Create createDto){
+
+
+    public QuestionDto.Response saveQuestion(UserDetails userDetails, QuestionDto.Create createDto){
 
         Question question = questionMapper.createDtoToQuestion(createDto);
+        question.setMember(memberService.verifyExistsEmail(userDetails.getUsername()));
         question.setCreatedAt(LocalDateTime.now());
         //bountyChecker(question);
 
@@ -85,8 +87,6 @@ public class QuestionService {
         Question findQuestion =
                 optionalQuestion.orElseThrow(() ->
                         new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
-
-
 
         return findQuestion;
 

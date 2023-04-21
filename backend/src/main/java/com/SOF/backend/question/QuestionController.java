@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,9 +61,10 @@ public class QuestionController {
 
 
     @PostMapping("/ask")
-    public ResponseEntity creatQuestion(@Valid @RequestBody QuestionDto.Create createDto){
+    public ResponseEntity creatQuestion(@AuthenticationPrincipal UserDetails userDetails,
+            @Valid @RequestBody QuestionDto.Create createDto){
 
-        return new ResponseEntity(questionService.saveQuestion(createDto), HttpStatus.CREATED);
+        return new ResponseEntity(questionService.saveQuestion(userDetails, createDto), HttpStatus.CREATED);
     }
 
     @PatchMapping("/ask/{question-id}")
