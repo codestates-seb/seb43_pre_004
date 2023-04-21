@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { AiOutlineSearch } from 'react-icons/ai';
 
 const Searchbar = styled.input`
-  width: 40rem;
+  width: 38rem;
   height: 31px;
   margin-right: 10px;
   padding-left: 32px;

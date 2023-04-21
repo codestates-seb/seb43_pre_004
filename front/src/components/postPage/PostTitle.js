@@ -32,7 +32,7 @@ function PostTitle() {
           Is there an elegant way to check if multiple variables equal one value
           or vice versa
         </h1>
-        <BlueButton text="Ask Question" size="100px" />
+        <BlueButton text="Ask Question" size="103px" />
       </Title>
       <PostData>
         <div className="data">

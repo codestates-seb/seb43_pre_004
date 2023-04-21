@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { RiPencilFill } from 'react-icons/ri';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { FaRegCalendarAlt } from 'react-icons/fa';
+import EditUserButton from './EditUserButton';
 
 const UserWrapper = styled.div`
   width: 1050px;
@@ -12,6 +12,7 @@ const UserWrapper = styled.div`
   height: 144px;
   margin-bottom: 16px;
 `;
+
 const UserInf = styled.div`
   display: flex;
   align-items: center;
@@ -24,6 +25,7 @@ const UserInf = styled.div`
     }
   }
 `;
+
 const UserData = styled.div`
   > .user-name {
     margin: 4px 4px 12px 4px;
@@ -58,6 +60,7 @@ const UserNav = styled.div`
   font-size: 13px;
   > div {
     padding: 6px 12px;
+    cursor: pointer;
   }
   > .activity {
     background-color: #f48225;
@@ -68,37 +71,6 @@ const UserNav = styled.div`
 // const UserContent = styled.div`
 //   display: flex;
 // `;
-const UserButton = styled.div`
-  display: flex;
-  height: 144px;
-`;
-const Button = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  border-radius: 3px;
-  border: 1px solid #6a737c;
-  margin: 3px;
-  height: 35px;
-  font-size: 12px;
-  color: #6a737c;
-  width: 75px;
-  &:hover {
-    background-color: #f9fafa;
-  }
-  &:active {
-    box-shadow: 0px 0px 2px 4px rgba(0, 0, 0, 0.1);
-  }
-`;
-const EditButton = styled(Button)`
-  width: 100px;
-  > .pencil-img {
-    width: 17px;
-    height: 17px;
-    margin-right: 2px;
-  }
-`;
 
 function UserPageTop() {
   return (
@@ -125,15 +97,7 @@ function UserPageTop() {
             </ul>
           </UserData>
         </UserInf>
-        <UserButton>
-          <EditButton className="edit-button" type="button">
-            <RiPencilFill className="pencil-img" />
-            Edit profile
-          </EditButton>
-          <Button className="profiles-button" type="button">
-            Profiles
-          </Button>
-        </UserButton>
+        <EditUserButton />
       </UserWrapper>
       <UserNav>
         <div>Profile</div>
