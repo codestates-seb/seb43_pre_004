@@ -87,10 +87,4 @@ public class Question {
             answer.setQuestion(this);
         }
     }
-
-
-
-
-    @OneToMany(mappedBy = "question")
-    private List<Answer> answers = new ArrayList<>();
 }
