@@ -81,19 +81,19 @@
               "modifiedDate": "2023-04-20T17:29:43.51821",
               "answerId": null,
               "memberId": null
+            },
+            {
+              "answerId": 2,
+              "content": "테스트",
+              "createdDate": "2023-04-20T17:07:12.574206",
+              "modifiedDate": "2023-04-20T17:07:12.574221",
+              "question": null,
+              "member": null,
+              "answerComments": []
             }
           ]
         }
       ]
-    },
-    {
-      "answerId": 2,
-      "content": "테스트",
-      "createdDate": "2023-04-20T17:07:12.574206",
-      "modifiedDate": "2023-04-20T17:07:12.574221",
-      "question": null,
-      "member": null,
-      "answerComments": []
     },
     {
       "id": 3,

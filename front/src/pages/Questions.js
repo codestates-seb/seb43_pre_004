@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import Question from '../components/questions/Question';
-import Pagination from '../components/questions/PageButton';
+import Pagination from '../components/questions/Pagination';
 import BlueButton from '../components/postPage/BlueButton';
 import QuestionsTab from '../components/questions/QuestionsTab';
+import QuestionList from '../recoil/Atom';
 
 const QuestionBody = styled.div`
   width: 802px;
@@ -24,6 +26,16 @@ const QTopFirst = styled.div`
 `;
 
 function Questions() {
+  const [questionList, setQuestionList] = useRecoilState(QuestionList);
+
+  useEffect(() => {
+    fetch('http://localhost:3001/data')
+      .then(res => res.json())
+      .then(data => {
+        setQuestionList(data);
+      });
+  }, [setQuestionList]);
+
   return (
     <QuestionBody>
       <QTopFirst>
@@ -32,7 +44,9 @@ function Questions() {
       </QTopFirst>
       <QuestionsTab />
       <div className="container">
-        <Question />
+        {questionList?.map(post => (
+          <Question data={post} />
+        ))}
       </div>
       <Pagination />
     </QuestionBody>

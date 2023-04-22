@@ -73,19 +73,19 @@ const PostSummary = styled.div`
   }
 `;
 
-const StyledTags = styled.div`
-  margin-top: 10px;
-  > span {
-    font-size: 12px;
-    width: auto;
-    height: 23.59px;
-    color: #39739d;
-    background-color: #e1ecf4;
-    border-radius: 3px;
-    margin: 0px 6px 2px 0px;
-    padding: 4.8px 6px;
-  }
-`;
+// const StyledTags = styled.div`
+//   margin-top: 10px;
+//   > span {
+//     font-size: 12px;
+//     width: auto;
+//     height: 23.59px;
+//     color: #39739d;
+//     background-color: #e1ecf4;
+//     border-radius: 3px;
+//     margin: 0px 6px 2px 0px;
+//     padding: 4.8px 6px;
+//   }
+// `;
 
 const UserSummary = styled.div`
   display: flex;
@@ -112,33 +112,25 @@ const UserSummary = styled.div`
   }
 `;
 
-function Question() {
+function Question({ data }) {
+  console.log(data);
   return (
     <PostBox>
       <MainContent>
         <PostColumn>
-          <p className="answer">1 answer</p>
-          <p className="views"> 132 views</p>
-          <p className="bounty">&#43; 100</p>
+          <p className="answer">{data.answerCnt} answer</p>
+          <p className="views"> {data.viewed} views</p>
+          <p className="bounty">&#43; {Math.abs(data.bounty / 50) * 50}</p>
         </PostColumn>
         <PostSummary>
-          <div>docker windows build file not found</div>
-          <div className="summary">
-            My Application is based on WCF Web App Trying to run a Dockerfile on
-            OpenShift Windows cluster, below is the error occurring Error
-            processing tar file(exit status 1) Error processing tar file(exit
-            status 1): link /Files/Program Files/common files/Microsoft
-            Shared/Ink/en-US/micaut.dll.mui /Files/Program Files (x86)/common
-            files/Microsoft Shared/ink/en-US/micaut.dll.mui: no such file or
-            directory /Files/Program Files (x86)/Common Files/Microsoft
-            Shared/ink/en-US/InkObj.dll.mui: no such file or directory,
-          </div>
+          <div>{data.title}</div>
+          <div className="summary">{data.content}</div>
           <div>
-            <StyledTags>
+            {/* <StyledTags>
               <span>kubernetes</span>
               <span>openshift</span>
               <span>docker-for-windows</span>
-            </StyledTags>
+            </StyledTags> */}
             <UserSummary>
               <img
                 src="https://www.gravatar.com/avatar/5ff6dfdabf32aa18f1c28421abbed30c?s=32&d=identicon&r=PG"
