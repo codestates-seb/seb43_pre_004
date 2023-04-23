@@ -16,6 +16,7 @@ const MainContent = styled.div`
 `;
 
 const PostColumn = styled.div`
+  height: 62px;
   font-size: 13px;
   display: flex;
   flex-direction: column;
@@ -113,12 +114,20 @@ const UserSummary = styled.div`
 `;
 
 function Question({ data }) {
-  console.log(data);
+  function formatDate() {
+    const date = new Date(data.createdAt);
+    const month = date.toLocaleString('en-US', { month: 'short' });
+    const day = date.getDate();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    return `${month} ${day} at ${hours}:${minutes}`;
+  }
+
   return (
     <PostBox>
       <MainContent>
         <PostColumn>
-          <p className="answer">{data.answerCnt} answer</p>
+          <p className="answer">{data.answerCnt}answer</p>
           <p className="views"> {data.viewed} views</p>
           <p className="bounty">&#43; {Math.abs(data.bounty / 50) * 50}</p>
         </PostColumn>
@@ -137,8 +146,9 @@ function Question({ data }) {
                 alt="userimage"
               />
               <span className="username"> user804401</span>
-              <span className="fame">1,954</span>
-              <span className="updateDay">asked Mar 30 at 9:45</span>
+              <span className="updateDay">
+                asked {formatDate(data.createdAt)}
+              </span>
             </UserSummary>
           </div>
         </PostSummary>
