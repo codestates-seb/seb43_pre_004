@@ -16,8 +16,6 @@ import java.util.List;
 public class DummyController {
 
 
-
-
     @GetMapping("/dummy1")
     public ResponseEntity getMemberDummies(){
         MemberDummy memberDummy1 = new MemberDummy(1L, "hgd123@naver.com", 3);
