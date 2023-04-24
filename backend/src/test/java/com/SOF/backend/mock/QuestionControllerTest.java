@@ -32,25 +32,8 @@ public class QuestionControllerTest {
 
     @Autowired
     private Gson gson;
-
-
-
-    @Test
-    public void getMemberTest() throws  Exception{
-
-        QuestionDto.Response response = new QuestionDto.Response(1L,
-                 "제목",
-                "내용",
-                null,
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                1);
-
-        given(questionService.findQuestion(Mockito.anyLong())).willReturn(new QuestionDto.Response());
-
-        String questionId = String.valueOf(response.getQuestionId());
-
-
-
-    }
 }
+
+
+
+
