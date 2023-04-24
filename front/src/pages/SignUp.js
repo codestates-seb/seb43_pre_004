@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { RiShareBoxFill } from 'react-icons/ri';
 import Header from '../components/header/Header';
@@ -117,7 +118,7 @@ const SmallText = styled.div`
 function SignUp() {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <SignPage>
         <SignupLeft />
         <SignInput>
@@ -136,7 +137,9 @@ function SignUp() {
                 invitations, company announcements, and digests.
               </CheckBoxText>
             </Checkbox>
-            <SingUpButton type="button">Sign up</SingUpButton>
+            <Link to="/login">
+              <SingUpButton type="button">Sign up</SingUpButton>
+            </Link>
             <MoreSmallText>
               By clicking “Sign up”, you agree to our{' '}
               <a href="https://stackoverflow.com/legal/terms-of-service/public">
@@ -155,7 +158,7 @@ function SignUp() {
           <BottomTextBox>
             <SmallText>
               <span> Already have an account? </span>
-              <a href="../pages/Login.js">Log in</a>
+              <Link to="/login">Log in</Link>
             </SmallText>
             <SmallText className="mt-12">
               <span>Are you an employer? </span>

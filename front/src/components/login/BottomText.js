@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { RiShareBoxFill } from 'react-icons/ri';
 
@@ -26,7 +27,7 @@ function BottomText() {
     <BottomTextBox>
       <SmallText>
         <span> Don&apos;t have an account? </span>
-        <a href="https://stackoverflow.com/users/signup?ssrc=head">Sign up</a>
+        <Link to="/signup">Sign up</Link>
       </SmallText>
       <SmallText className="mt-12">
         <span>Are you an employer? </span>

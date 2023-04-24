@@ -28,7 +28,7 @@ function Questions() {
     <QuestionBody>
       <QTopFirst>
         <h1>All Questions</h1>
-        <BlueButton text="Ask Question" size="103px" />
+        <BlueButton text="Ask Question" size="103px" link="/question/ask" />
       </QTopFirst>
       <QuestionsTab />
       <div className="container">

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { HiInbox } from 'react-icons/hi';
 import { AiFillTrophy, AiFillQuestionCircle } from 'react-icons/ai';
@@ -44,20 +45,26 @@ const LogOutButton = styled.a`
 `;
 
 function LoginButton() {
+  const navigate = useNavigate();
+  const userClick = () => {
+    navigate('/user/profile');
+  };
+  const logoutClick = () => {
+    navigate('/');
+  };
   return (
     <ButtonBox>
-      <a href="*">
-        <HeaderProfile
-          src="https://lh3.googleusercontent.com/a/AGNmyxbDWZTRA18Nxi2ZXXDMgNucovxTvk_tZZxjLv5j=k-s256"
-          alt="user-img"
-        />
-      </a>
+      <HeaderProfile
+        onClick={userClick}
+        src="https://lh3.googleusercontent.com/a/AGNmyxbDWZTRA18Nxi2ZXXDMgNucovxTvk_tZZxjLv5j=k-s256"
+        alt="user-img"
+      />
       <IconBox>
         <HiInbox className="size" />
         <AiFillTrophy className="size" />
         <AiFillQuestionCircle className="size" />
       </IconBox>
-      <LogOutButton>Log out</LogOutButton>
+      <LogOutButton onClick={logoutClick}>Log out</LogOutButton>
     </ButtonBox>
   );
 }
