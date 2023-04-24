@@ -24,7 +24,9 @@ public enum ExceptionCode {
 
     EMAIL_ALREADY_EXISTS(409, "Email already exists"),
 
-    NICKNAME_ALREADY_EXISTS(409, "Nickname already exists");
+    NICKNAME_ALREADY_EXISTS(409, "Nickname already exists"),
+
+    ACCESS_NOT_ALLOWED(403, "The authority not verified");
 
     @Getter
     private int status;
