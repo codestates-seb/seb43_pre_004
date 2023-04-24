@@ -34,13 +34,12 @@ const LogOutButton = styled.a`
   height: 33px;
   margin: 0px 4px;
   text-align: center;
-  background-color: #e1ecf4;
-  border: 1px solid #39739d;
+  background-color: #0a95ff;
   border-radius: 3px;
   padding: 8px;
-  color: #39739d;
+  color: #fff;
   :hover {
-    background-color: #b3d3ea;
+    background-color: #3172c6;
   }
 `;
 
