@@ -47,6 +47,10 @@ public class Question {
 
     @Column
     @ColumnDefault("0")
+    private int commentsCnt;
+
+    @Column
+    @ColumnDefault("0")
     private int viewed;
 
     @Column

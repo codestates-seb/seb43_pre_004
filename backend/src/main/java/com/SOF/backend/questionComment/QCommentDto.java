@@ -1,5 +1,6 @@
 package com.SOF.backend.questionComment;
 
+import com.SOF.backend.member.Entity.Member;
 import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Getter;
@@ -42,6 +43,8 @@ public class QCommentDto {
         private LocalDateTime createdAt;
 
         private LocalDateTime modifiedAt;
+
+        private Member member;
 
 
     }

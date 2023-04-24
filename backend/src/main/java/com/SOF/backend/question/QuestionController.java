@@ -6,6 +6,7 @@ import com.SOF.backend.Utils.ContextHolederUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -62,11 +63,10 @@ public class QuestionController {
 
 
     @PostMapping("/ask")
-    public ResponseEntity creatQuestion(@Valid @RequestBody QuestionDto.Create createDto){
-
+    public ResponseEntity creatQuestion( @Valid @RequestBody QuestionDto.Create createDto){
         Long memberId = contextHolederUtils.getAuthMemberId();
 
-        log.info("memberId = {}", memberId);
+        //log.info("memberId = {}", memberId);
 
         return new ResponseEntity(questionService.saveQuestion(memberId, createDto), HttpStatus.CREATED);
     }
@@ -74,17 +74,17 @@ public class QuestionController {
     @PatchMapping("/ask/{question-id}")
     public ResponseEntity updateQuestion(@PathVariable("question-id") @Positive Long questionId,
                                          @Valid @RequestBody QuestionDto.Update updateDto){
+        Long memberId = contextHolederUtils.getAuthMemberId();
 
-
-        return ResponseEntity.ok(questionService.updateQuestion(questionId, updateDto));
+        return ResponseEntity.ok(questionService.updateQuestion(memberId,questionId, updateDto));
 
     }
 
 
     @DeleteMapping("/ask/{question-id}")
     public ResponseEntity deleteQuestion(@PathVariable("question-id") @Positive Long questionId){
-
-        questionService.deleteQuestion(questionId);
+        Long memberId = contextHolederUtils.getAuthMemberId();
+        questionService.deleteQuestion(memberId, questionId);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
