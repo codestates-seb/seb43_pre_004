@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+import { useRecoilState, useRecoilValue } from 'recoil'; // value만 필요한 컴포넌트 = useRecoilValue() , state를 변경하기만 하는 컴포넌트 = useSetRecoilState()
 import BlueButton from './BlueButton';
+import selectedQuestionState from '../../pages/selectedQuestionState';
 
 const Title = styled.div`
   display: flex;
@@ -25,13 +27,13 @@ const PostData = styled.div`
 `;
 
 function PostTitle() {
+  const selectedQuestion = useRecoilValue(selectedQuestionState);
+  const { title } = selectedQuestion || {}; // selectedQuestion이 null이거나 undefined일 경우, title변수가 undefined가 되는 것을 방지
+
   return (
     <div>
       <Title>
-        <h1>
-          Is there an elegant way to check if multiple variables equal one value
-          or vice versa
-        </h1>
+        <h1>{title}</h1>
         <BlueButton text="Ask Question" size="103px" />
       </Title>
       <PostData>

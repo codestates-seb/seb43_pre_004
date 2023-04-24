@@ -20,8 +20,9 @@ const MainBody = styled.div`
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Main />
+      {/* <Header /> */}
+      {/* <Main /> */}
+      <PostPage />
     </div>
   );
 }

@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import AskedData from './AskedData';
 import ClickButton from './ClickButton';
 import CommentList from './CommentList';
 import VoteScore from './VoteScore';
+import selectedQuestionState from '../../pages/selectedQuestionState';
 
 const PostSection = styled.div`
   display: flex;
@@ -32,6 +34,8 @@ const PostData = styled.div`
   padding-top: 4px;
 `;
 function PostContent() {
+  const selectedQuestion = useRecoilValue(selectedQuestionState);
+  const { content } = selectedQuestion || {};
   return (
     <PostSection>
       <PostContainer>
@@ -39,16 +43,7 @@ function PostContent() {
           <VoteScore />
         </div>
         <PostWrapper>
-          <PostText>
-            <p>Is there a neater/shorter way to write out things like:</p>
-            <p>if(var1 == 1 && var2 == 1 && var3 == 1)</p> <p>or</p>
-            <p>if(var1 == 1 || var1 == 4 || var1 == 6)</p>
-            <p>
-              I know all sorts of commonly used syntax shortcuts that make
-              things look a bit cleaner and I figured there may be some other
-              way to write it that know of considering how bulky it gets.
-            </p>
-          </PostText>
+          <PostText>{content}</PostText>
           <PostData>
             <ClickButton />
             <AskedData />
