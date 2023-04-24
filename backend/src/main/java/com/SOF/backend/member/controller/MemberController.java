@@ -12,16 +12,18 @@ import com.SOF.backend.member.Entity.Member;
 import com.SOF.backend.member.dto.MemberDto;
 import com.SOF.backend.member.mapper.MemberMapper;
 import com.SOF.backend.member.service.MemberService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
+
 @RestController
 @Validated
+@Slf4j
 public class MemberController {
     private final MemberService memberService;
     private final MemberMapper mapper;
@@ -34,7 +36,6 @@ public class MemberController {
     @PostMapping("/signup")
     public ResponseEntity postMember(@Valid @RequestBody MemberDto.Post postDto){
         Member member = mapper.memberPostDtoToMember(postDto);
-
         Member response = memberService.createMember(member);
 
         return new ResponseEntity<>(mapper.memberToMemberResponseDto(response),

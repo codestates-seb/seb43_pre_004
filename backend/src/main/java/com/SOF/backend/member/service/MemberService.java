@@ -113,15 +113,12 @@ public class MemberService {
         return findMember;
     }
 
-    public Member verifyExistsEmail(String email) {
+    private void verifyExistsEmail(String email) {
         Optional<Member> optionalMember =
                 memberRepository.findByEmail(email);
         if(optionalMember.isPresent()){
             throw new BusinessLogicException(ExceptionCode.EMAIL_ALREADY_EXISTS);
         }
-        Member findMember = optionalMember.orElseThrow(() ->
-                new BusinessLogicException(ExceptionCode.EMAIL_ALREADY_EXISTS));
-        return findMember;
     }
 
     private void verifyExistsNickname(String nickname) {

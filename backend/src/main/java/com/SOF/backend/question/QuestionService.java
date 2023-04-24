@@ -4,6 +4,8 @@ package com.SOF.backend.question;
 import com.SOF.backend.Utils.CustomBeanUtils;
 import com.SOF.backend.exception.BusinessLogicException;
 import com.SOF.backend.exception.ExceptionCode;
+import com.SOF.backend.jwt.auth.userdetails.MemberDetailsService;
+import com.SOF.backend.member.Entity.Member;
 import com.SOF.backend.member.repository.MemberRepository;
 import com.SOF.backend.member.service.MemberService;
 import com.SOF.backend.question.QuestionDto.QuestionPageResponse;
@@ -34,10 +36,11 @@ public class QuestionService {
 
 
 
-    public QuestionDto.Response saveQuestion(UserDetails userDetails, QuestionDto.Create createDto){
+    public QuestionDto.Response saveQuestion(Long memberId, QuestionDto.Create createDto){
 
         Question question = questionMapper.createDtoToQuestion(createDto);
-        question.setMember(memberService.verifyExistsEmail(userDetails.getUsername()));
+        Member member = memberService.findMember(memberId);
+        question.setMember(member);
         question.setCreatedAt(LocalDateTime.now());
         //bountyChecker(question);
 
