@@ -47,8 +47,11 @@ public class QuestionService {
         return questionMapper.questionToResponseDto(questionRepository.save(question));
     }
 
-    public QuestionDto.Response updateQuestion(Long questionId, QuestionDto.Update updateDto){
+    public QuestionDto.Response updateQuestion(Long memberId,Long questionId, QuestionDto.Update updateDto){
         Question findquestion = findVerifiedQuestion(questionId);
+        if (findquestion.getMember().getMemberId() != memberId){
+            throw new BusinessLogicException(ExceptionCode.ACCESS_NOT_ALLOWED);
+        }
         Question question = questionMapper.updateDtoToQuestion(updateDto);
         //bountyChecker(question);
         Question updateQuestion = customBeanUtils.copyNonNullProperties(question, findquestion);
@@ -57,9 +60,12 @@ public class QuestionService {
         return questionMapper.questionToResponseDto(questionRepository.save(updateQuestion));
     }
 
-    public void deleteQuestion(Long questId){
-
-        questionRepository.deleteById(questId);
+    public void deleteQuestion(Long memberId,Long questionId){
+        Question findquestion = findVerifiedQuestion(questionId);
+        if (findquestion.getMember().getMemberId() != memberId){
+            throw new BusinessLogicException(ExceptionCode.ACCESS_NOT_ALLOWED);
+        }
+        questionRepository.deleteById(questionId);
     }
 
     public QuestionPageResponse findQuestions(int page, int size){
