@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import logoIcon from '../image/logo-icon.png';
 import OauthButton from '../components/login/OauthButton';
@@ -108,7 +109,9 @@ function Login() {
           </a>
         </PasswordTextBox>
         <input type="password" />
-        <LoginButton type="button">Log in</LoginButton>
+        <Link to="/question/list">
+          <LoginButton type="button">Log in</LoginButton>
+        </Link>
       </LoginInputBox>
       <BottomText />
     </LoginPage>

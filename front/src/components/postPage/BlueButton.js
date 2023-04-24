@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Button = styled.button`
@@ -15,12 +16,14 @@ const Button = styled.button`
   }
 `;
 
-function BlueButton({ text, size }) {
+function BlueButton({ text, size, link }) {
   return (
     <div>
-      <Button type="button" size={size}>
-        {text}
-      </Button>
+      <Link to={link}>
+        <Button type="button" size={size}>
+          {text}
+        </Button>
+      </Link>
     </div>
   );
 }

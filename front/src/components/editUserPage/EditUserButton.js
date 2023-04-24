@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { RiPencilFill } from 'react-icons/ri';
 
@@ -35,9 +36,13 @@ const EditButton = styled(Button)`
 `;
 
 function EditUserButton() {
+  const navigate = useNavigate();
+  const userEditClick = () => {
+    navigate('/user/profile/edit');
+  };
   return (
     <UserButton>
-      <EditButton className="edit-button" type="button">
+      <EditButton type="button" onClick={userEditClick}>
         <RiPencilFill className="pencil-img" />
         Edit profile
       </EditButton>
