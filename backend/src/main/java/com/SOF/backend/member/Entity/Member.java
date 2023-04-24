@@ -12,6 +12,7 @@ package com.SOF.backend.member.Entity;
 import com.SOF.backend.answer.entity.Answer;
 import com.SOF.backend.answerComment.entity.AnswerComment;
 import com.SOF.backend.question.Question;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -70,12 +71,15 @@ public class Member {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Question> questions = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Answer> answers = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<AnswerComment> answerComments = new ArrayList<>();
 

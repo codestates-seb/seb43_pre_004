@@ -55,6 +55,7 @@ public class Question {
     @Column
     private LocalDateTime modifiedAt;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
@@ -63,6 +64,7 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     private List<QComment> comments = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     private List<Answer> answers = new ArrayList<>();
 

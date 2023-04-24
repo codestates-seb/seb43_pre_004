@@ -1,14 +1,15 @@
 package com.SOF.backend.question;
 
 
+import com.SOF.backend.Utils.ContextHolederUtils;
+
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
@@ -21,12 +22,14 @@ public class QuestionController {
 
     private final QuestionService questionService;
 
+    private final ContextHolederUtils contextHolederUtils;
 
 
-    public QuestionController(QuestionService questionService) {
+    public QuestionController(QuestionService questionService, ContextHolederUtils contextHolederUtils) {
         this.questionService = questionService;
-
+        this.contextHolederUtils = contextHolederUtils;
     }
+
 
     @GetMapping("/list")
     public ResponseEntity getQuestionList(@RequestParam(value = "page", defaultValue = "1") int page,
@@ -61,7 +64,11 @@ public class QuestionController {
     @PostMapping("/ask")
     public ResponseEntity creatQuestion(@Valid @RequestBody QuestionDto.Create createDto){
 
-        return new ResponseEntity(questionService.saveQuestion(createDto), HttpStatus.CREATED);
+        Long memberId = contextHolederUtils.getAuthMemberId();
+
+        log.info("memberId = {}", memberId);
+
+        return new ResponseEntity(questionService.saveQuestion(memberId, createDto), HttpStatus.CREATED);
     }
 
     @PatchMapping("/ask/{question-id}")

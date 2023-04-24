@@ -87,6 +87,7 @@ public class QuestionMapper {
                         .answerCnt(question.getAnswerCnt())
                         .viewed(question.getViewed())
                         .comments(question.getComments())
+                        .member(question.getMember())
                         .build();
             }   return QuestionDto.Response.builder()
                     .questionId(question.getQuestionId())
@@ -98,6 +99,7 @@ public class QuestionMapper {
                     .answerCnt(question.getAnswerCnt())
                     .viewed(question.getViewed())
                     .comments(question.getComments())
+                    .member(question.getMember())
                     .build();
 
 
