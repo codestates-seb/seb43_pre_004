@@ -1,9 +1,11 @@
 package com.SOF.backend.jwt.auth.filter;
 
+
 import com.SOF.backend.jwt.auth.JwtTokenizer;
 import com.SOF.backend.jwt.auth.utils.CustomAuthorityUtils;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,6 +20,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+
+@Slf4j
 public class JWtVerificationFilter extends OncePerRequestFilter {
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils authorityUtils;
@@ -55,7 +59,8 @@ public class JWtVerificationFilter extends OncePerRequestFilter {
     }
 
     private void setAuthenticationToContext(Map<String, Object> claims) {
-        String username = (String) claims.get("email");
+        String username = (String) claims.get("sub");
+        //log.info("email = {}", username);
         List<GrantedAuthority> authorities = authorityUtils.createAuthorities((List)claims.get("roles"));
         Authentication authentication = new UsernamePasswordAuthenticationToken(username, null, authorities);
         SecurityContextHolder.getContext().setAuthentication(authentication);
