@@ -96,6 +96,8 @@ public class QuestionDto {
 
         private int answerCnt;
 
+        private int commentCnt;
+
         private int viewed;
 
         private Member member;

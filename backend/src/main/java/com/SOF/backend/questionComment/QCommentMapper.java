@@ -39,6 +39,7 @@ public class QCommentMapper {
                 .comment(qComment.getComment())
                 .createdAt(qComment.getCreatedAt())
                 .modifiedAt(qComment.getModifiedAt())
+                .member(qComment.getMember())
                 .build();
 
     }

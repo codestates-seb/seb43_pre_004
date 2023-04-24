@@ -62,7 +62,7 @@ public class QuestionService {
 
     public void deleteQuestion(Long memberId,Long questionId){
         Question findquestion = findVerifiedQuestion(questionId);
-        if (findquestion.getMember().getMemberId() != memberId){
+        if (!findquestion.getMember().getMemberId().equals(memberId)){
             throw new BusinessLogicException(ExceptionCode.ACCESS_NOT_ALLOWED);
         }
         questionRepository.deleteById(questionId);

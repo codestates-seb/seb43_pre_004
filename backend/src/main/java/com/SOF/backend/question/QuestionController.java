@@ -66,7 +66,7 @@ public class QuestionController {
     public ResponseEntity creatQuestion( @Valid @RequestBody QuestionDto.Create createDto){
         Long memberId = contextHolederUtils.getAuthMemberId();
 
-        log.info("memberId = {}", memberId);
+        //log.info("memberId = {}", memberId);
 
         return new ResponseEntity(questionService.saveQuestion(memberId, createDto), HttpStatus.CREATED);
     }

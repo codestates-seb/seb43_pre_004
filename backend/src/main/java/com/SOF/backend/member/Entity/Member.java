@@ -12,6 +12,7 @@ package com.SOF.backend.member.Entity;
 import com.SOF.backend.answer.entity.Answer;
 import com.SOF.backend.answerComment.entity.AnswerComment;
 import com.SOF.backend.question.Question;
+import com.SOF.backend.questionComment.QComment;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -83,6 +84,10 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<AnswerComment> answerComments = new ArrayList<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "member")
+    private List<QComment> questionComments = new ArrayList<>();
+
 
     public Member(String email, String nickname, String password,
                   byte[] image, String location, String webLink,
@@ -135,6 +140,13 @@ public class Member {
 
     public void addAnswerComment(AnswerComment answerComment){
         answerComments.add(answerComment);
+    }
+
+    public void addQuestionComment(QComment questionComment){
+        questionComments.add(questionComment);
+        if(questionComment.getMember() != this){
+            questionComment.setMember(this);
+        }
     }
 }
 

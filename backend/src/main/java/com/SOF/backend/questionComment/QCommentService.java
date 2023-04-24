@@ -4,9 +4,12 @@ package com.SOF.backend.questionComment;
 import com.SOF.backend.Utils.CustomBeanUtils;
 import com.SOF.backend.exception.BusinessLogicException;
 import com.SOF.backend.exception.ExceptionCode;
+import com.SOF.backend.member.Entity.Member;
+import com.SOF.backend.member.service.MemberService;
 import com.SOF.backend.question.Question;
 import com.SOF.backend.question.QuestionRepository;
 import com.SOF.backend.question.QuestionService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -14,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class QCommentService {
 
 
@@ -21,37 +25,30 @@ public class QCommentService {
     private final QCommentMapper qCommentMapper;
     private final QCommentRepository qCommentRepository;
     private final CustomBeanUtils<QComment> customBeanUtils;
-
     private QuestionRepository questionRepository;
-
     private final QuestionService questionService;
-
-    public QCommentService(QCommentMapper qCommentMapper,
-                           QCommentRepository qCommentRepository,
-                           CustomBeanUtils<QComment> customBeanUtils,
-                           QuestionRepository questionRepository,
-                           QuestionService questionService) {
-        this.qCommentMapper = qCommentMapper;
-        this.qCommentRepository = qCommentRepository;
-        this.customBeanUtils = customBeanUtils;
-        this.questionRepository = questionRepository;
-        this.questionService = questionService;
-    }
+    private final MemberService memberService;
     
 
-    public QCommentDto.Response saveQComment(Long questionId, QCommentDto.Create createDto){
+    public QCommentDto.Response saveQComment(Long memberId, Long questionId, QCommentDto.Create createDto){
         QComment qComment = qCommentMapper.createDtoToQComent(createDto);
+        qComment.addMember(memberService.findMember(memberId));
         qComment.setCreatedAt(LocalDateTime.now());
-        qComment.addQuestion(questionService.findVerifiedQuestion(questionId));
+        Question question = questionService.findVerifiedQuestion(questionId);
+        question.setCommentsCnt(question.getCommentsCnt()+1);
+        qComment.addQuestion(question);
         qCommentRepository.save(qComment);
 
         return qCommentMapper.qCommentToResponse(qComment);
     }
 
 
-    public QCommentDto.Response updateQComment(Long questionId, Long commentId, QCommentDto.Update updateDto){
+    public QCommentDto.Response updateQComment(Long memberId, Long questionId, Long commentId, QCommentDto.Update updateDto){
         questionService.findVerifiedQuestion(questionId);
         QComment findComment = findVerifiedQComment(commentId);
+        if (!findComment.getMember().getMemberId().equals(memberId) ){
+            throw new BusinessLogicException(ExceptionCode.ACCESS_NOT_ALLOWED);
+        }
         QComment updateComment = qCommentMapper.updateDtoToQComment(updateDto);
         QComment response = customBeanUtils.copyNonNullProperties(updateComment, findComment);
         response.setModifiedAt(LocalDateTime.now());
@@ -60,8 +57,11 @@ public class QCommentService {
 
     }
 
-    public void deleteQComment(Long commentId){
-
+    public void deleteQComment(Long memberId, Long commentId){
+        QComment findComment = findVerifiedQComment(commentId);
+        if (!findComment.getMember().getMemberId().equals(memberId) ){
+            throw new BusinessLogicException(ExceptionCode.ACCESS_NOT_ALLOWED);
+        }
         qCommentRepository.deleteById(commentId);
     }
 
