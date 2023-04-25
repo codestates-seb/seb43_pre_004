@@ -64,7 +64,7 @@ const LinksIcon = styled.div`
   margin-top: 7.5px;
 `;
 
-function EditSubInput() {
+function EditSubInput({ idData }) {
   return (
     <div>
       <StyledBoxTitle>Links</StyledBoxTitle>
@@ -74,21 +74,21 @@ function EditSubInput() {
           <LinksIcon>
             <RiLinksFill />
           </LinksIcon>
-          <SubInputBox type="text" />
+          <SubInputBox type="text" defaultValue={idData.webLink} />
         </div>
         <div>
           <SubInputTitle>Twitter link or username</SubInputTitle>
           <LinksIcon>
             <BsTwitter />
           </LinksIcon>
-          <SubInputBox type="text" />
+          <SubInputBox type="text" defaultValue={idData.twitterLink} />
         </div>
         <div>
           <SubInputTitle>GitHub link or username</SubInputTitle>
           <LinksIcon>
             <BsGithub />
           </LinksIcon>
-          <SubInputBox type="text" />
+          <SubInputBox type="text" defaultValue={idData.githubLink} />
         </div>
       </SubEditBox>
       <StyledBoxTitle>
@@ -98,7 +98,7 @@ function EditSubInput() {
       <SubEditBox>
         <div>
           <SubInputTitle>Full name</SubInputTitle>
-          <PrivateInput type="text" />
+          <PrivateInput type="text" defaultValue={idData.realName} />
         </div>
       </SubEditBox>
     </div>
