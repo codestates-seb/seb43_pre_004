@@ -16,7 +16,7 @@ margin-top: 30px;
     color:  #EDEDED;
     text-align: center;
     font-size: 200px;
-    text-shadow: -1px 0 #BFC0C0;, 0 1px #BFC0C0;, 1px 0 #BFC0C0;, 0 -1px #BFC0C0;;
+    text-shadow: -1px 0 #BFC0C0;, 0 1px #BFC0C0;, 1px 0 #BFC0C0;, 0 -1px #BFC0C0;
 }
 > h3{
     font-size: 40px;
@@ -27,6 +27,7 @@ margin-top: 30px;
     font-weight: 900;
 }
 `;
+
 const ButtonBox = styled.div`
   display: flex;
   align-items: center;

@@ -35,10 +35,10 @@ function Questions() {
   const [questionList, setQuestionList] = useRecoilState(QuestionList);
 
   useEffect(() => {
-    fetch('http://localhost:3001/data')
+    fetch('https://9280-115-140-189-21.jp.ngrok.io/question/list')
       .then(res => res.json())
       .then(data => {
-        setQuestionList(data);
+        setQuestionList(data.data);
       });
   }, [setQuestionList]);
 
@@ -52,7 +52,7 @@ function Questions() {
       <QuestionContainer>
         <div className="container">
           {questionList?.map(post => (
-            <Question data={post} />
+            <Question key={post.questionId} data={post} />
           ))}
         </div>
         <Pagination />

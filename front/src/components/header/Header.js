@@ -88,8 +88,8 @@ function Header() {
           </NavText>
         </NavTextBox>
         <Search />
-        {/* <NonLoginButton /> */}
-        <LoginButton />
+        <NonLoginButton />
+        {/* <LoginButton /> */}
       </NavContent>
     </StyledHeader>
   );
