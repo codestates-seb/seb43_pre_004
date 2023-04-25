@@ -35,7 +35,7 @@ public class AnswerCommentMapper {
                 response.getComment(),
                 response.getCreateDate(),
                 response.getModifyDate(),
-                response.getAnswer(),
+                response.getAnswer().getAnswerId(),
                 response.getMember()
         );
     }
