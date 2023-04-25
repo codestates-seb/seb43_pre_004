@@ -60,4 +60,8 @@ public class DummyController {
         return new ResponseEntity(list.get(idx), HttpStatus.OK);
     }
 
+    @GetMapping("/main")
+    public String helloworld(){
+        return "To-do Application!";
+    }
 }
