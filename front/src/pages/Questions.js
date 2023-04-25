@@ -26,6 +26,12 @@ const QTopFirst = styled.div`
   }
 `;
 
+const QuestionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 function Questions() {
   const [questionList, setQuestionList] = useRecoilState(QuestionList);
   const navigate = useNavigate();

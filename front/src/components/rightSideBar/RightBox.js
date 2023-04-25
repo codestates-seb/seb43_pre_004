@@ -23,15 +23,15 @@ const Text = styled.p`
   color: #0074cc;
 `;
 const Tag = styled.div`
-padding 10px 15px 24px 0px;
-> span{
+  padding: 10px 15px 24px 0px;
+  > span {
     margin: 2px 2px 6px 0px;
     padding: 4.8px 6px;
     background-color: #e1ecf4;
     border-radius: 2px;
     color: #39739d;
     font-size: 12px;
-}
+  }
 `;
 const ButtonBox = styled.div`
   display: flex;

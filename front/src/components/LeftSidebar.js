@@ -101,12 +101,13 @@ const NavStyle = styled(NavLink)`
       display: flex;
       align-items: center;
       font-weight: bold;
-     > .icon {
+      > .icon {
         fill: #0c0d0e;
       }
     }
-
+  }
 `;
+
 function LeftSidebar() {
   return (
     <SideNav>

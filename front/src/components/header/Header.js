@@ -57,7 +57,7 @@ const NavText = styled.li`
   @media screen and (max-width: 1210px) {
     width: auto;
     padding: 0px;
-    #hiden {
+    #hidden {
       display: none;
     }
   }
@@ -70,11 +70,11 @@ function Header() {
     <StyledHeader>
       <NavContent>
         <Link to="/">
-          <LogoImg src={logo} alt="stackoverflow" />
+          <LogoImg src={logo} alt="stackOverflow" />
         </Link>
         <NavTextBox>
           <NavText>
-            <a href="https://stackoverflow.co/" id="hiden">
+            <a href="https://stackoverflow.co/" id="hidden">
               About
             </a>
           </NavText>
@@ -82,7 +82,7 @@ function Header() {
             <a href="https://stackoverflow.co/">Products</a>
           </NavText>
           <NavText>
-            <a href="https://stackoverflow.co/teams/" id="hiden">
+            <a href="https://stackoverflow.co/teams/" id="hidden">
               For Teams
             </a>
           </NavText>
