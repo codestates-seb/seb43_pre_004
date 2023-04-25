@@ -18,9 +18,8 @@ public class SecurityCorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
-        configuration.addAllowedOriginPattern("http://localhost:8080");
+
         configuration.addAllowedOriginPattern("http://localhost:3000");
-        configuration.addAllowedOriginPattern("https://1571-39-119-48-216.ngrok-free.app");
         configuration.addExposedHeader("Authorization");
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("GET");

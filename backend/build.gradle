@@ -81,3 +81,9 @@ bootJar {
 		into 'static/docs'
 	}
 }
+
+dependencyManagement {
+	imports {
+		mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2021.0.3'
+	}
+}
