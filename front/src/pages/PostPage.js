@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+// import { useLocation } from 'react-router-dom';
 import AnswerInput from '../components/postPage/AnswerInput';
 import AnswerList from '../components/postPage/AnswerList';
 import PostContent from '../components/postPage/PostContent';
@@ -18,6 +19,8 @@ const PostWrapper = styled.div`
 `;
 
 function PostPage() {
+  // const location = useLocation();
+  // const { title } = location.state;
   return (
     <Section>
       <PostTitle />

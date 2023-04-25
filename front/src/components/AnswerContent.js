@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { useLocation } from 'react-router-dom';
-import AskedData from './AskedData';
-import ClickButton from './ClickButton';
-import CommentList from './CommentList';
-import VoteScore from './VoteScore';
-import selectedQuestionState from '../../pages/selectedQuestionState';
+import { useLocation, useParams } from 'react-router-dom';
+import AskedData from './postPage/AskedData';
+import ClickButton from './postPage/ClickButton';
+import CommentList from './postPage/CommentList';
+import VoteScore from './postPage/VoteScore';
+// import selectedQuestionState from '../pages/selectedQuestionState';
 
 const PostSection = styled.div`
   display: flex;
@@ -34,11 +34,20 @@ const PostData = styled.div`
   margin: 16px 0px 28px 0px;
   padding-top: 4px;
 `;
-function PostContent() {
-  const selectedQuestion = useRecoilValue(selectedQuestionState);
-  // const { content } = selectedQuestion || {};
+function AnswerContent() {
   const location = useLocation();
-  const { content } = location.state;
+  const { comments } = location.state;
+  const { questionId } = useParams();
+  console.log('comments:', comments);
+  console.log('questionId:', questionId);
+
+  const selectedQuestion = comments.find(
+    content => content.question.questionId === Number(questionId),
+  );
+
+  console.log('selectedQuestion:', selectedQuestion);
+  //   console.log('selectedComment:', selectedComment);
+
   return (
     <PostSection>
       <PostContainer>
@@ -46,7 +55,9 @@ function PostContent() {
           <VoteScore />
         </div>
         <PostWrapper>
-          <PostText>{content}</PostText>
+          <PostText>
+            {selectedQuestion ? selectedQuestion.question.content : ''}
+          </PostText>
           <PostData>
             <ClickButton />
             <AskedData />
@@ -58,4 +69,4 @@ function PostContent() {
   );
 }
 
-export default PostContent;
+export default AnswerContent;

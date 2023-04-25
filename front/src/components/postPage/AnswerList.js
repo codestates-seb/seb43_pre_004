@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import PostContent from './PostContent';
+import AnswerContent from '../AnswerContent';
 
 const AnswerContainer = styled.div`
   padding-top: 10px;
@@ -22,10 +23,7 @@ function AnswerList() {
         <h2>2 Answers</h2>
       </Title>
       <Content>
-        <PostContent />
-      </Content>
-      <Content>
-        <PostContent />
+        <AnswerContent />
       </Content>
     </AnswerContainer>
   );
