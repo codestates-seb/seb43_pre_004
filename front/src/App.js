@@ -48,11 +48,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return (
-    <RecoilRoot>
-      <RouterProvider router={router} />
-    </RecoilRoot>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

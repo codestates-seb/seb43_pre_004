@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { userDataState } from '../recoil/UserAtoms';
 import UserPageTop from '../components/editUserPage/UserPageTop';
 import EditUserPageAside from '../components/editUserPage/EditUserPageAside';
 import EditSubInput from '../components/editUserPage/EditSubInput';
@@ -63,6 +66,31 @@ const CancelButton = styled.button`
 `;
 
 function EditUserPage() {
+  const navigate = useNavigate();
+  const { memberId } = useParams();
+  const [idData, setIdData] = useRecoilState(userDataState);
+  const [error, setError] = useState();
+
+  const handleCancel = () => {
+    navigate('/user/profile');
+  };
+  const handleSubmit = () => {};
+  const handleUpdate = updated => {
+    console.log(updated);
+    setIdData({ ...idData, updated });
+  };
+
+  useEffect(() => {
+    setError(undefined);
+    fetch('https://9280-115-140-189-21.jp.ngrok.io/user/profile/1')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setIdData(data);
+      })
+      .catch(() => setError('error'));
+  }, [setIdData]);
+
   return (
     <EditUserPageBox>
       <UserPageTop />
@@ -72,12 +100,16 @@ function EditUserPage() {
           <TitleBox>Edit your profile</TitleBox>
           <div>
             <StyledBoxTitle>Public information</StyledBoxTitle>
-            <EditUserInput />
+            <EditUserInput idData={idData} onUpdate={handleUpdate} />
           </div>
-          <EditSubInput />
+          <EditSubInput idData={idData} />
           <EditButtonArea>
-            <SaveButton>Save profile</SaveButton>
-            <CancelButton>Cancel</CancelButton>
+            <SaveButton type="submit" onClick={handleSubmit}>
+              Save profile
+            </SaveButton>
+            <CancelButton type="button" onClick={handleCancel}>
+              Cancel
+            </CancelButton>
           </EditButtonArea>
         </div>
       </EditUserPageConstruct>
