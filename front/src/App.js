@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-import Search from './components/header/Search';
 import Login from './pages/Login';
 import AskQuestion from './pages/AskQuestion';
 import UserPage from './pages/UserPage';
