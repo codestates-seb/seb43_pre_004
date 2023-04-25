@@ -1,13 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 import main from '../image/main.png';
-import Footer from '../components/Footer';
 
+const MainBody = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 function Main() {
   return (
-    <div>
+    <MainBody>
       <img src={main} alt="mainPage" />
-      <Footer />
-    </div>
+    </MainBody>
   );
 }
 

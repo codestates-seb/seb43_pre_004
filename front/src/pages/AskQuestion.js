@@ -152,7 +152,6 @@ function AskQuestion() {
         </Title>
 
         <TextEditor editorState={editorState} setEditorState={setEditorState} />
-
         <ReviewButton onClick={handleClick}>Review your question</ReviewButton>
       </Container>
     </ContainerWrapper>

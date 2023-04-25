@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-/* import { NavLink } from 'react-router-dom'; */
+import { NavLink } from 'react-router-dom';
 import { ReactComponent as GlobalIcon } from '../image/globalIcon.svg';
 import { ReactComponent as IconInfoSm } from '../image/iconInfoSm.svg';
 import { ReactComponent as IconStar } from '../image/iconStar.svg';
@@ -87,7 +87,7 @@ const Button = styled.button`
     color: rgb(4 68 126);
   }
 `;
-/* const NavStyle = styled(NavLink)`
+const NavStyle = styled(NavLink)`
   :hover {
     color: #0c0d0e;
   }
@@ -106,7 +106,7 @@ const Button = styled.button`
       }
     }
 
-`; */
+`;
 function LeftSidebar() {
   return (
     <SideNav>
@@ -116,13 +116,12 @@ function LeftSidebar() {
         {/* </NavStyle> */}
         <PublicUl>
           <li className="public">PUBLIC</li>
-          {/* <NavStyle to="" className="global-tab"> */}
-          {/* <li className="global"></li> */}
-          <li className="global-tab">
-            <GlobalIcon className="icon" />
-            &nbsp;&nbsp;Questions
-          </li>
-          {/* </NavStyle> */}
+          <NavStyle to="/question/list" className="global-tab">
+            <li className="global">
+              <GlobalIcon className="icon" />
+              &nbsp;&nbsp;Questions
+            </li>
+          </NavStyle>
           <li>Tags</li>
           <li>Users</li>
           <li>Companies</li>

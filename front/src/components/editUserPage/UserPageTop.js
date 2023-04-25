@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { FaRegCalendarAlt } from 'react-icons/fa';
+import { userDataState } from '../../recoil/UserAtoms';
 import EditUserButton from './EditUserButton';
 
 const UserWrapper = styled.div`
@@ -73,6 +76,23 @@ const UserNav = styled.div`
 // `;
 
 function UserPageTop() {
+  const { memberId } = useParams();
+  const [idData, setIdData] = useRecoilState(userDataState);
+  const [error, setError] = useState();
+  const lastLog = `${idData.latestLog}`;
+  const lastTime = lastLog.substring(0, 10);
+
+  useEffect(() => {
+    setError(undefined);
+    fetch('/data/member.json')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data[0]);
+        setIdData(data[0]);
+      })
+      .catch(() => setError('error'));
+  }, [setIdData]);
+
   return (
     <div>
       <UserWrapper>
@@ -84,15 +104,15 @@ function UserPageTop() {
             />
           </div>
           <UserData>
-            <div className="user-name">User Name</div>
+            <div className="user-name">{idData.nickname}</div>
             <ul className="user-time">
               <li>
                 <AiOutlineClockCircle className="li-img" />
-                Last seen this week
+                {lastTime}
               </li>
               <li>
                 <FaRegCalendarAlt className="li-img" />
-                Visited 4 days, 4 consecutive
+                Visited {idData.visited} days
               </li>
             </ul>
           </UserData>

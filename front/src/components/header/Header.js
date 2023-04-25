@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Search from './Search';
 import NonLoginButton from './NonLoginButton';
@@ -68,9 +69,9 @@ function Header() {
   return (
     <StyledHeader>
       <NavContent>
-        <a href="https://stackoverflow.com">
+        <Link to="/">
           <LogoImg src={logo} alt="stackoverflow" />
-        </a>
+        </Link>
         <NavTextBox>
           <NavText>
             <a href="https://stackoverflow.co/" id="hiden">

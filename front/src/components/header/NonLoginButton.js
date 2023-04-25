@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const ButtonWrapper = styled.div`
@@ -7,7 +8,7 @@ const ButtonWrapper = styled.div`
   font-size: 12px;
 `;
 
-const LoginButton = styled.a`
+const LoginButton = styled.button`
   width: 59.45px;
   height: 33px;
   margin-right: 4px;
@@ -22,7 +23,7 @@ const LoginButton = styled.a`
   }
 `;
 
-const SignUpButton = styled.a`
+const SignUpButton = styled.button`
   width: 68.45px;
   height: 33px;
   border-radius: 3px;
@@ -36,12 +37,19 @@ const SignUpButton = styled.a`
 `;
 
 function NonLoginButton() {
+  const navigate = useNavigate();
+  const loginClick = () => {
+    navigate('/login');
+  };
+  const signupClick = () => {
+    navigate('/signup');
+  };
   return (
     <ButtonWrapper>
-      <LoginButton href="https://stackoverflow.com/users/login?ssrc=head&returnurl=https%3a%2f%2fstackoverflow.com%2f">
+      <LoginButton type="button" onClick={loginClick}>
         Login
       </LoginButton>
-      <SignUpButton href="https://stackoverflow.com/users/signup?ssrc=head">
+      <SignUpButton type="button" onClick={signupClick}>
         Sign up
       </SignUpButton>
     </ButtonWrapper>
