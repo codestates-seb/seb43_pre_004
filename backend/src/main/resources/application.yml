@@ -10,6 +10,7 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
+
 jwt:
   key: TheKeyIsSensitiveInformationSoYouShouldChangeItLaterUsingTheEnvironmentalVariablesOfTheOS
   access-token-expiration-minutes: 30
@@ -17,3 +18,5 @@ jwt:
 mail:
   address:
     admin: yhj00760410@gmail.com
+server:
+  port: 3000
