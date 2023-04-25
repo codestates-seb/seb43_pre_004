@@ -1,8 +1,8 @@
 package com.SOF.backend.answerComment.entity;
 
 import com.SOF.backend.answer.entity.Answer;
-import com.SOF.backend.answerComment.dto.AnswerCommentResponseDto;
 import com.SOF.backend.member.Entity.Member;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +11,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -25,13 +24,14 @@ public class AnswerComment {
     @Column(nullable = false)
     private String comment;
     @CreatedDate
-    private LocalDateTime createDate = LocalDateTime.now();
+    private LocalDateTime createDate ;
 
     @LastModifiedDate
-    private LocalDateTime modifyDate = LocalDateTime.now();
+    private LocalDateTime modifyDate ;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ANSWER_ID")
+    @JsonIgnore
     private Answer answer;
 
     @ManyToOne
@@ -52,6 +52,12 @@ public class AnswerComment {
         this.answer = answer;
         if (!this.answer.getAnswerComments().contains(this)){
             this.answer.getAnswerComments().add(this);
+        }
+    }
+    public void addMember(Member member) {
+        this.member = member;
+        if (!this.member.getAnswerComments().contains(this)){
+            this.member.getAnswerComments().add(this);
         }
     }
 }
