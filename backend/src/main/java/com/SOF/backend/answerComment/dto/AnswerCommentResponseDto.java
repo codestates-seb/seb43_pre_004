@@ -1,7 +1,5 @@
 package com.SOF.backend.answerComment.dto;
 
-import com.SOF.backend.answer.entity.Answer;
-import com.SOF.backend.answerComment.entity.AnswerComment;
 import com.SOF.backend.member.Entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +18,6 @@ public class AnswerCommentResponseDto {
     private String comment;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
-    private Answer answerId;
-    private Member memberId;
+    private Long answerId;
+    private Member member;
 }

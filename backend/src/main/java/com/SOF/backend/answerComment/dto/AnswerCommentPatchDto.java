@@ -1,6 +1,5 @@
 package com.SOF.backend.answerComment.dto;
 
-import com.SOF.backend.answerComment.entity.AnswerComment;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
