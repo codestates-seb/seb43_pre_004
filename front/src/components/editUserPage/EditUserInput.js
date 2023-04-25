@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import TextEditor from '../TextEditor';
 
@@ -53,7 +53,12 @@ const ImgChangeButton = styled.p`
   cursor: pointer;
 `;
 
-function EditUserInput() {
+function EditUserInput({ idData, onUpdate }) {
+  const handleChange = event => {
+    const nickname = event.target.value;
+    onUpdate({ ...idData, nickname });
+  };
+
   return (
     <div>
       <EditInputBox>
@@ -66,9 +71,19 @@ function EditUserInput() {
           <ImgChangeButton>Change picture</ImgChangeButton>
         </ImageBox>
         <InputTitle>Display name</InputTitle>
-        <UserInput type="text" />
+        <UserInput
+          type="text"
+          // ref={userNicknameRef}
+          defaultValue={idData.nickname}
+          onChange={handleChange}
+        />
         <InputTitle>Location</InputTitle>
-        <UserInput type="text" />
+        <UserInput
+          type="text"
+          // ref={userLocation}
+          defaultValue={idData.userLocation}
+          onChange={handleChange}
+        />
         <InputTitle>Title</InputTitle>
         <UserInput type="text" placeholder="No title has been set" />
         <InputTitle>About me</InputTitle>
