@@ -5,6 +5,7 @@ import PaginationCustom from 'react-js-pagination';
 const PaginationWrap = styled.div`
   padding: 1.5rem;
   margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
   ul {
     display: flex;
     gap: 5px;
@@ -27,32 +28,32 @@ const PaginationWrap = styled.div`
     }
 
     & > li.active {
-      border-color: var(--main-400);
+      border-color: #f48225;
       background-color: #f48225;
       > a {
-        color: var(--white);
+        color: #fff;
       }
     }
   }
 
   li {
-    width: 30px;
-    height: 30px;
+    width: 23.96px;
+    height: 27px;
     padding-top: 3px;
-    border: 1px solid var(--black-100);
+    border: 1px solid #bcbbbb;
     border-radius: 0.25rem;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 13px;
-    font-weight: 500;
     cursor: pointer;
 
     &:hover {
       background-color: var(--black-070);
+      color: #fff;
     }
     > a {
-      color: var(--black-700);
+      color: #3b4045;
     }
   }
 `;

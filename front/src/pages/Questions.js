@@ -25,6 +25,12 @@ const QTopFirst = styled.div`
   }
 `;
 
+const QuestionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 function Questions() {
   const [questionList, setQuestionList] = useRecoilState(QuestionList);
 
@@ -43,12 +49,14 @@ function Questions() {
         <BlueButton text="Ask Question" size="103px" link="/question/ask" />
       </QTopFirst>
       <QuestionsTab />
-      <div className="container">
-        {questionList?.map(post => (
-          <Question data={post} />
-        ))}
-      </div>
-      <Pagination />
+      <QuestionContainer>
+        <div className="container">
+          {questionList?.map(post => (
+            <Question data={post} />
+          ))}
+        </div>
+        <Pagination />
+      </QuestionContainer>
     </QuestionBody>
   );
 }
