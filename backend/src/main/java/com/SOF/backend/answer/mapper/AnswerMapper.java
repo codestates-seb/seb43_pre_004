@@ -6,6 +6,7 @@ import com.SOF.backend.answer.dto.AnswerResponseDto;
 import com.SOF.backend.answer.entity.Answer;
 import org.springframework.stereotype.Component;
 
+
 @Component
 public class AnswerMapper {
     public Answer answerPostDtoToAnswer(AnswerPostDto answerPostDto){
@@ -34,8 +35,8 @@ public class AnswerMapper {
                 response.getContent(),
                 response.getCreateDate(),
                 response.getModifyDate(),
-                response.getQuestion(),
-                response.getMember(),
+                response.getQuestion().getQuestionId(),
+                response.getMember().getMemberId(),
                 response.getAnswerComments()
         );
     }
