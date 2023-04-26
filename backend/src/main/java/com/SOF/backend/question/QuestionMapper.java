@@ -90,6 +90,7 @@ public class QuestionMapper {
                         .member(question.getMember())
                         .answerCnt(question.getAnswerCnt())
                         .commentCnt(question.getCommentsCnt())
+                        .Answers(question.getAnswers())
                         .build();
             }   return QuestionDto.Response.builder()
                     .questionId(question.getQuestionId())
@@ -104,6 +105,7 @@ public class QuestionMapper {
                     .member(question.getMember())
                     .answerCnt(question.getAnswerCnt())
                     .commentCnt(question.getCommentsCnt())
+                    .Answers(question.getAnswers())
                     .build();
 
 

@@ -1,5 +1,6 @@
 package com.SOF.backend.question;
 
+import com.SOF.backend.answer.entity.Answer;
 import com.SOF.backend.member.Entity.Member;
 import com.SOF.backend.questionComment.QComment;
 import lombok.AllArgsConstructor;
@@ -103,6 +104,8 @@ public class QuestionDto {
         private Member member;
 
         private List<QComment> comments;
+
+        private List<Answer> Answers;
     }
 
     @Getter
