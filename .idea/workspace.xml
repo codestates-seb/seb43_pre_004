@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb7eec6e-3c13-4f11-b065-0550e98399b8" name="변경" comment="feat : 추가 question에  answer 정보 포함&#10;&#10;&#10;매퍼, 엔티티, DTO 수정으로 퀘스천에 answer 정보 가져오기">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/jwt/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/jwt/config/SecurityConfiguration.java" afterDir="false" />
+    <list default="true" id="fb7eec6e-3c13-4f11-b065-0550e98399b8" name="변경" comment="fix : CORS설정 재조정">
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/jwt/config/SecurityCorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/jwt/config/SecurityCorsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/jwt/config/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/jwt/config/WebMvcConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/member/dto/MemberDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/member/dto/MemberDto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682411771844</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fix : CORS설정 재조정">
+      <created>1682488762228</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1682488762228</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -222,6 +225,7 @@
     <MESSAGE value="feat : 추가 톰캣 설정 &#10;&#10;톰캣 설정, 실행확인, 이미지 경로 처리 미완성" />
     <MESSAGE value="feat : Cors 설정 추가" />
     <MESSAGE value="feat : 추가 question에  answer 정보 포함&#10;&#10;&#10;매퍼, 엔티티, DTO 수정으로 퀘스천에 answer 정보 가져오기" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat : 추가 question에  answer 정보 포함&#10;&#10;&#10;매퍼, 엔티티, DTO 수정으로 퀘스천에 answer 정보 가져오기" />
+    <MESSAGE value="fix : CORS설정 재조정" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix : CORS설정 재조정" />
   </component>
 </project>

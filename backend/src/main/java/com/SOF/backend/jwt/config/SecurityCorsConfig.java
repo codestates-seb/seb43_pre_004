@@ -25,6 +25,7 @@ public class SecurityCorsConfig {
         configuration.addAllowedOriginPattern("https://d5c1-39-119-48-216.ngrok-free.app");
         configuration.addAllowedHeader("Access-Control-Allow-Origin");
         configuration.addExposedHeader("Authorization");
+        configuration.setAllowCredentials(true);
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("GET");
         configuration.addAllowedMethod("POST");
