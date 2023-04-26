@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb7eec6e-3c13-4f11-b065-0550e98399b8" name="변경" comment="feat : Cors 설정 추가">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/backend.backend.main.iml" beforeDir="false" />
+    <list default="true" id="fb7eec6e-3c13-4f11-b065-0550e98399b8" name="변경" comment="feat : 추가 question에  answer 정보 포함&#10;&#10;&#10;매퍼, 엔티티, DTO 수정으로 퀘스천에 answer 정보 가져오기">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/jwt/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/jwt/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/jwt/config/SecurityCorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/jwt/config/SecurityCorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/jwt/config/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/jwt/config/WebMvcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/member/dto/MemberDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/member/dto/MemberDto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,8 +101,10 @@
       </method>
     </configuration>
     <configuration name="BackendApplication (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="zulu-11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.SOF.backend.BackendApplication" />
-      <module name="backend.backend.main" />
+      <module name="backend.backend.main~1" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.SOF.backend.*" />
@@ -193,7 +197,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682411150445</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feat : 추가 question에  answer 정보 포함&#10;&#10;&#10;매퍼, 엔티티, DTO 수정으로 퀘스천에 answer 정보 가져오기">
+      <created>1682411771844</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1682411771844</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -210,6 +221,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat : 추가 톰캣 설정 &#10;&#10;톰캣 설정, 실행확인, 이미지 경로 처리 미완성" />
     <MESSAGE value="feat : Cors 설정 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat : Cors 설정 추가" />
+    <MESSAGE value="feat : 추가 question에  answer 정보 포함&#10;&#10;&#10;매퍼, 엔티티, DTO 수정으로 퀘스천에 answer 정보 가져오기" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat : 추가 question에  answer 정보 포함&#10;&#10;&#10;매퍼, 엔티티, DTO 수정으로 퀘스천에 answer 정보 가져오기" />
   </component>
 </project>
