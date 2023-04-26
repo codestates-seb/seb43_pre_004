@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb7eec6e-3c13-4f11-b065-0550e98399b8" name="변경" comment="fix : CORS설정 재조정">
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/jwt/config/SecurityCorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/jwt/config/SecurityCorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/answer/controller/AnswerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/answer/controller/AnswerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/answerComment/controller/AnswerCommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/answerComment/controller/AnswerCommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/jwt/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/jwt/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/member/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/member/controller/MemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/question/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/question/QuestionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/questionComment/QCommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/SOF/backend/questionComment/QCommentController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +83,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/KDH/codeStasts/section5/backendRF"
+    "last_opened_file_path": "C:/Users/KDH/codeStasts/section5/backendLHJ"
   }
 }]]></component>
   <component name="RunManager" selected="애플리케이션.BackendApplication (2)">
@@ -207,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682488762228</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fix : CORS설정 재조정">
+      <created>1682489076615</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1682489076615</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
