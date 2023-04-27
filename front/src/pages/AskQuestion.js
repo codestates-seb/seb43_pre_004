@@ -1,12 +1,12 @@
-// import React, { useState } from 'react';
+// import React from 'react';
 // import { Editor } from 'react-draft-wysiwyg';
 // import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 import styled from 'styled-components';
-import { useState } from 'react';
-import axios from 'axios';
-import { EditorState, convertToRaw } from 'draft-js';
+import { useRecoilState } from 'recoil';
+import { useNavigate } from 'react-router';
 import TextEditor from '../components/TextEditor';
+import { AskTitle, AskEditor } from '../recoil/Atom';
 
 const ContainerWrapper = styled.div`
   width: 100%;
@@ -62,7 +62,7 @@ const Title = styled.div`
   /* background-color: #f8f9f9; */
 `;
 
-const Titlesub = styled.span`
+const TitleSub = styled.span`
   display: flex;
   /* border: 1px solid #d6d9dc; */
   /* border-radius: 3px; */
@@ -90,28 +90,36 @@ const ReviewButton = styled.button`
 `;
 
 function AskQuestion() {
-  const [title, setTitle] = useState('');
-  // EditorState.createEmpty()는 draft-js 라이브러리에서 제공하는 EditorState 클래스의 정적 메서드 중 하나로, 빈 상태의 EditorState 객체를 생성하는 함수
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const [title, setTitle] = useRecoilState(AskTitle);
+  const [content, setContent] = useRecoilState(AskEditor);
+  const navigate = useNavigate();
 
   const handleTitleChange = e => {
     setTitle(e.target.value);
   };
 
-  const handleClick = async () => {
-    const contentState = editorState.getCurrentContent();
-    const rawContentState = convertToRaw(contentState);
-    // try-catch 비동기 함수 axios.post() 예외 상황을 처리
-    try {
-      const response = await axios.post('/api/questions', {
-        title,
-        content: rawContentState,
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+  const handleClick = e => {
+    e.preventDefault();
+
+    const postContent = {};
+    postContent.title = title;
+    postContent.content = content;
+    postContent.contentImg = null;
+    postContent.bounty = 0;
+
+    fetch('https://346d-115-140-189-21.jp.ngrok.io/question/ask', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'text/plain',
+      },
+      body: JSON.stringify(postContent),
+    })
+      .then(res => {
+        navigate('/question/list');
+      })
+      .catch(err => console.log(err));
   };
+
   return (
     <ContainerWrapper>
       <Container>
@@ -140,9 +148,9 @@ function AskQuestion() {
         </Notice>
         <Title>
           Title
-          <Titlesub>
+          <TitleSub>
             Be specific and imagine you’re asking a question to another person.
-          </Titlesub>
+          </TitleSub>
           <TitleInput
             type="text"
             placeholder="e.g ls there an R function for finding the index of an element in a vector?"
@@ -151,8 +159,8 @@ function AskQuestion() {
           />
         </Title>
 
-        <TextEditor editorState={editorState} setEditorState={setEditorState} />
-        <ReviewButton onClick={handleClick}>Review your question</ReviewButton>
+        <TextEditor value={content} onChange={setContent} />
+        <ReviewButton onClick={handleClick}>Post your question</ReviewButton>
       </Container>
     </ContainerWrapper>
   );

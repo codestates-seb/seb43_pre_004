@@ -42,18 +42,11 @@ function Questions() {
   };
 
   useEffect(() => {
-    fetch('https://d5c1-39-119-48-216.ngrok-free.app/question/list', {
-      headers: {
-        'Content-Type': `application/json`,
-        'ngrok-skip-browser-warning': '69420',
-      },
-      // mode: 'cors',
-    })
+    fetch('https://9280-115-140-189-21.jp.ngrok.io/question/list')
       .then(res => res.json())
       .then(data => {
         setQuestionList(data.data);
-      })
-      .catch(error => console.log(error));
+      });
   }, [setQuestionList]);
 
   return (
@@ -63,14 +56,14 @@ function Questions() {
         <BlueButton text="Ask Question" size="103px" link="/question/ask" />
       </QTopFirst>
       <QuestionsTab />
-      <div className="container">
-        {questionList?.map(post => (
-          <div key={post.id} onClick={() => handleClick(post)}>
-            <Question data={post} />
-          </div>
-        ))}
-      </div>
-      <Pagination />
+      <QuestionContainer>
+        <div className="container">
+          {questionList?.map(post => (
+            <Question key={post.questionId} data={post} />
+          ))}
+        </div>
+        <Pagination />
+      </QuestionContainer>
     </QuestionBody>
   );
 }
