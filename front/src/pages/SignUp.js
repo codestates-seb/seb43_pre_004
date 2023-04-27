@@ -74,19 +74,19 @@ const CheckBoxText = styled.div`
   color: #0c0d0e;
 `;
 
-const SingUpButton = styled.button`
-  width: 268px;
-  height: 37.8px;
-  background-color: #0a95ff;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  margin: 2px 4px;
-  padding: 10.4px;
-  :hover {
-    background-color: #3172c6;
-  }
-`;
+// const SingUpButton = styled.button`
+//   width: 268px;
+//   height: 37.8px;
+//   background-color: #0a95ff;
+//   color: #fff;
+//   border: none;
+//   border-radius: 3px;
+//   margin: 2px 4px;
+//   padding: 10.4px;
+//   :hover {
+//     background-color: #3172c6;
+//   }
+// `;
 
 const BottomTextBox = styled.div`
   display: flex;
@@ -128,19 +128,19 @@ function SignUp() {
           <SignInputBox>
             <SignUpInput />
             {/* <CaptchaBox> */}
-            <Captcha />
+            {/* <Captcha /> */}
             {/* </CaptchaBox> */}
-            <Checkbox>
+            {/* <Checkbox>
               <CheckboxInput type="checkbox" />
               <CheckBoxText>
                 Opt-in to receive occasional product updates, user research
                 invitations, company announcements, and digests.
               </CheckBoxText>
-            </Checkbox>
-            <Link to="/login">
+            </Checkbox> */}
+            {/* <Link to="/login">
               <SingUpButton type="button">Sign up</SingUpButton>
-            </Link>
-            <MoreSmallText>
+            </Link> */}
+            {/* <MoreSmallText>
               By clicking “Sign up”, you agree to our{' '}
               <a href="https://stackoverflow.com/legal/terms-of-service/public">
                 terms of service
@@ -153,7 +153,7 @@ function SignUp() {
               <a href="https://stackoverflow.com/legal/cookie-policy">
                 cookie policy
               </a>
-            </MoreSmallText>
+            </MoreSmallText> */}
           </SignInputBox>
           <BottomTextBox>
             <SmallText>

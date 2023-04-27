@@ -4,7 +4,7 @@ module.exports = function (app) {
   app.use(
     '/signup', // 요청 path를 지정해줍니다
     createProxyMiddleware({
-      target: 'https://1925-115-140-189-21.jp.ngrok.io',
+      target: '13.209.68.130',
       changeOrigin: true,
     }),
   );
@@ -12,7 +12,7 @@ module.exports = function (app) {
   app.use(
     '/login/connection',
     createProxyMiddleware({
-      target: 'https://1925-115-140-189-21.jp.ngrok.io',
+      target: '13.209.68.130',
       changeOrigin: true,
     }),
   );
