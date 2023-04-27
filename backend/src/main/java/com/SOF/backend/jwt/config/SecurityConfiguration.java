@@ -81,7 +81,7 @@ public class SecurityConfiguration {
         CorsConfiguration configuration = new CorsConfiguration();
         //configuration.setAllowedOriginPatterns(Collections.singletonList("*"));
         configuration.setAllowedOrigins(Arrays.asList("https://d5c1-39-119-48-216.ngrok-free.app", "http://localhost:3000"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "DELETE"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "DELETE", "OPTIONS"));
 
        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**",configuration);

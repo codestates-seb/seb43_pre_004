@@ -31,6 +31,7 @@ public class SecurityCorsConfig {
         configuration.addAllowedMethod("POST");
         configuration.addAllowedMethod("PATCH");
         configuration.addAllowedMethod("DELETE");
+        configuration.addAllowedMethod("OPTIONS");
 
         source.registerCorsConfiguration("/**", configuration);
 

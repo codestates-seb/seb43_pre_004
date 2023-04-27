@@ -15,7 +15,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry
                 .addMapping("/**")
                 .allowedOrigins("http://localhost:3000", "https://d5c1-39-119-48-216.ngrok-free.app")
-                .allowedMethods(HttpMethod.POST.name(), HttpMethod.GET.name(),HttpMethod.DELETE.name())
+                .allowedMethods(HttpMethod.POST.name(), HttpMethod.GET.name(),HttpMethod.DELETE.name(),HttpMethod.PATCH.name(),HttpMethod.OPTIONS.name())
                 .allowedHeaders("*")
                 .exposedHeaders("*")
                 .allowCredentials(true);

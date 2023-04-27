@@ -20,10 +20,13 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
+import static org.springframework.http.ResponseEntity.ok;
+
 @CrossOrigin(originPatterns = "http://localhost:3000")
 @RestController
 @Validated
 @Slf4j
+@RequestMapping
 public class MemberController {
     private final MemberService memberService;
     private final MemberMapper mapper;
