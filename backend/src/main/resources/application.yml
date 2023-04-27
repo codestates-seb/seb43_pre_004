@@ -1,15 +1,21 @@
 
 spring:
-  h2:
-    console:
-      enabled: true
-      path: /h2
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2
   datasource:
-    url: jdbc:h2:mem:test
+    url: jdbc:mysql://preproject-db.cvqnk3wegdy1.ap-northeast-2.rds.amazonaws.com:3306/backend_db
+    username: superTrutle
+    password: rjqnrld004!
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: create
     show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
 jwt:
   key: TheKeyIsSensitiveInformationSoYouShouldChangeItLaterUsingTheEnvironmentalVariablesOfTheOS
@@ -20,3 +26,5 @@ mail:
     admin: yhj00760410@gmail.com
 server:
   port: 3000
+config:
+  domain: http://turtle2.s3-website.ap-northeast-2.amazonaws.com/
