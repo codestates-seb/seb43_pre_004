@@ -84,11 +84,11 @@ function UserPageTop() {
 
   useEffect(() => {
     setError(undefined);
-    fetch('https://9280-115-140-189-21.jp.ngrok.io/user/profile/1')
+    fetch('/data/member.json')
       .then(res => res.json())
       .then(data => {
-        console.log(data);
-        setIdData(data);
+        console.log(data[0]);
+        setIdData(data[0]);
       })
       .catch(() => setError('error'));
   }, [setIdData]);

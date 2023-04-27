@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import TextEditor from '../TextEditor';
 
@@ -29,6 +29,8 @@ const UserInput = styled.input`
 `;
 
 const ImageBox = styled.div`
+  display: flex;
+  align-items: flex-end;
   margin-bottom: 10px;
 `;
 
@@ -38,7 +40,7 @@ const InputImageBox = styled.img`
   border-radius: 3px;
 `;
 
-const ImgChangeButton = styled.p`
+const ImgChangeButton = styled.label`
   width: 10.25rem;
   height: 2.0625rem;
   background-color: #525659;
@@ -52,11 +54,16 @@ const ImgChangeButton = styled.p`
   font-size: 13px;
   cursor: pointer;
 `;
+const ImgChange = styled.input`
+  display: none;
+`;
 
-function EditUserInput({ idData, onUpdate }) {
-  const handleChange = event => {
-    const nickname = event.target.value;
-    onUpdate({ ...idData, nickname });
+function EditUserInput({ nickname, setNickname, location, setLocation }) {
+  const handleNameChange = e => {
+    setNickname(e.target.value);
+  };
+  const handleLocationChange = e => {
+    setLocation(e.target.value);
   };
 
   return (
@@ -68,21 +75,20 @@ function EditUserInput({ idData, onUpdate }) {
             src="https://lh3.googleusercontent.com/a/AGNmyxbDWZTRA18Nxi2ZXXDMgNucovxTvk_tZZxjLv5j=k-s256"
             alt="user-img"
           />
-          <ImgChangeButton>Change picture</ImgChangeButton>
+          <ImgChangeButton htmlFor="imgUpload">Change picture</ImgChangeButton>
         </ImageBox>
+        <ImgChange type="file" id="imgUpload" accept="image/*" />
         <InputTitle>Display name</InputTitle>
         <UserInput
           type="text"
-          // ref={userNicknameRef}
-          defaultValue={idData.nickname}
-          onChange={handleChange}
+          value={nickname ?? ''}
+          onChange={handleNameChange}
         />
         <InputTitle>Location</InputTitle>
         <UserInput
           type="text"
-          // ref={userLocation}
-          defaultValue={idData.userLocation}
-          onChange={handleChange}
+          value={location ?? ''}
+          onChange={handleLocationChange}
         />
         <InputTitle>Title</InputTitle>
         <UserInput type="text" placeholder="No title has been set" />
