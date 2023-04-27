@@ -107,7 +107,7 @@ function AskQuestion() {
     postContent.contentImg = null;
     postContent.bounty = 0;
 
-    fetch('https://346d-115-140-189-21.jp.ngrok.io/question/ask', {
+    fetch('https://1925-115-140-189-21.jp.ngrok.io/question/ask', {
       method: 'POST',
       headers: {
         'Content-type': 'text/plain',

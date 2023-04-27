@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
@@ -70,23 +71,39 @@ function EditUserPage() {
   const { memberId } = useParams();
   const [idData, setIdData] = useRecoilState(userDataState);
   const [error, setError] = useState();
-
+  const [nickname, setNickname] = useState('');
+  const [location, setLocation] = useState('');
+  const [webLink, setWebLink] = useState('');
+  const [twitterLink, setTwitterLink] = useState('');
+  const [githubLink, setGithubLink] = useState('');
+  const [realName, SetRealName] = useState('');
   const handleCancel = () => {
     navigate('/user/profile');
   };
-  const handleSubmit = () => {};
-  const handleUpdate = updated => {
-    console.log(updated);
-    setIdData({ ...idData, updated });
+  const handleSubmit = () => {
+    const addData = {
+      ...idData,
+      nickname,
+      location,
+      webLink,
+      twitterLink,
+      githubLink,
+      realName,
+    };
   };
 
   useEffect(() => {
     setError(undefined);
-    fetch('https://9280-115-140-189-21.jp.ngrok.io/user/profile/1')
+    fetch('/data/member.json')
       .then(res => res.json())
       .then(data => {
-        console.log(data);
-        setIdData(data);
+        setIdData(data[0]);
+        setNickname(data[0].nickname);
+        setLocation(data[0].location);
+        setWebLink(data[0].webLink);
+        setTwitterLink(data[0].twitterLink);
+        setGithubLink(data[0].githubLink);
+        SetRealName(data[0].realName);
       })
       .catch(() => setError('error'));
   }, [setIdData]);
@@ -100,9 +117,23 @@ function EditUserPage() {
           <TitleBox>Edit your profile</TitleBox>
           <div>
             <StyledBoxTitle>Public information</StyledBoxTitle>
-            <EditUserInput idData={idData} onUpdate={handleUpdate} />
+            <EditUserInput
+              nickname={nickname}
+              setNickname={setNickname}
+              location={location}
+              setLocation={setLocation}
+            />
           </div>
-          <EditSubInput idData={idData} />
+          <EditSubInput
+            webLink={webLink}
+            setWebLink={setWebLink}
+            twitterLink={twitterLink}
+            setTwitterLink={setTwitterLink}
+            githubLink={githubLink}
+            setGithubLink={setGithubLink}
+            realName={realName}
+            SetRealName={SetRealName}
+          />
           <EditButtonArea>
             <SaveButton type="submit" onClick={handleSubmit}>
               Save profile

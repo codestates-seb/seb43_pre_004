@@ -64,7 +64,28 @@ const LinksIcon = styled.div`
   margin-top: 7.5px;
 `;
 
-function EditSubInput({ idData }) {
+function EditSubInput({
+  webLink,
+  setWebLink,
+  twitterLink,
+  setTwitterLink,
+  githubLink,
+  setGithubLink,
+  realName,
+  SetRealName,
+}) {
+  const handleWebLinkChange = e => {
+    setWebLink(e.target.value);
+  };
+  const handleTwitterLinkChange = e => {
+    setTwitterLink(e.target.value);
+  };
+  const handleGithubLinkChange = e => {
+    setGithubLink(e.target.value);
+  };
+  const handleRealNameChange = e => {
+    SetRealName(e.target.value);
+  };
   return (
     <div>
       <StyledBoxTitle>Links</StyledBoxTitle>
@@ -74,21 +95,33 @@ function EditSubInput({ idData }) {
           <LinksIcon>
             <RiLinksFill />
           </LinksIcon>
-          <SubInputBox type="text" defaultValue={idData.webLink} />
+          <SubInputBox
+            type="text"
+            value={webLink ?? ''}
+            onChange={handleWebLinkChange}
+          />
         </div>
         <div>
           <SubInputTitle>Twitter link or username</SubInputTitle>
           <LinksIcon>
             <BsTwitter />
           </LinksIcon>
-          <SubInputBox type="text" defaultValue={idData.twitterLink} />
+          <SubInputBox
+            type="text"
+            value={twitterLink ?? ''}
+            onChange={handleTwitterLinkChange}
+          />
         </div>
         <div>
           <SubInputTitle>GitHub link or username</SubInputTitle>
           <LinksIcon>
             <BsGithub />
           </LinksIcon>
-          <SubInputBox type="text" defaultValue={idData.githubLink} />
+          <SubInputBox
+            type="text"
+            value={githubLink ?? ''}
+            onChange={handleGithubLinkChange}
+          />
         </div>
       </SubEditBox>
       <StyledBoxTitle>
@@ -98,7 +131,11 @@ function EditSubInput({ idData }) {
       <SubEditBox>
         <div>
           <SubInputTitle>Full name</SubInputTitle>
-          <PrivateInput type="text" defaultValue={idData.realName} />
+          <PrivateInput
+            type="text"
+            value={realName ?? ''}
+            onChange={handleRealNameChange}
+          />
         </div>
       </SubEditBox>
     </div>
