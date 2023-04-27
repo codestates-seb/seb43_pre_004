@@ -56,7 +56,6 @@ function Questions() {
         <BlueButton text="Ask Question" size="103px" link="/question/ask" />
       </QTopFirst>
       <QuestionsTab />
-<<<<<<< HEAD
       <QuestionContainer>
         <div className="container">
           {questionList?.map(post => (
@@ -65,16 +64,6 @@ function Questions() {
         </div>
         <Pagination />
       </QuestionContainer>
-=======
-      <div className="container">
-        {questionList?.map(post => (
-          <div key={post.id} onClick={() => handleClick(post)}>
-            <Question data={post} />
-          </div>
-        ))}
-      </div>
-      <Pagination />
->>>>>>> 9dca88921cae52d3ce7c1bc62ad5b84aeed9c5f1
     </QuestionBody>
   );
 }
