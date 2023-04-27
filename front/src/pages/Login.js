@@ -1,6 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
 import logoIcon from '../image/logo-icon.png';
 import OauthButton from '../components/login/OauthButton';
 import BottomText from '../components/login/BottomText';
@@ -90,7 +91,78 @@ const LoginButton = styled.button`
   }
 `;
 
+const ErrorMessage = styled.div`
+  margin-top: 8px;
+  color: #cf0000;
+  font-size: 10px;
+`;
+
 function Login() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [emailValid, setEmailValid] = useState(false);
+  const [passwordValid, setPasswordValid] = useState(false);
+
+  const [notAllow, setNotAllow] = useState(true);
+
+  const handleEmail = e => {
+    setEmail(e.target.value);
+    const regex =
+      /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
+    if (regex.test(email)) {
+      setEmailValid(true);
+    } else {
+      setEmailValid(false);
+    }
+  };
+
+  const handlePw = e => {
+    setPassword(e.target.value);
+    const regex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-Z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
+    if (regex.test(e.target.value)) {
+      setPasswordValid(true);
+    } else {
+      setPasswordValid(false);
+    }
+  };
+
+  const onClickConfirmButton = () => {
+    axios({
+      method: 'POST',
+      url: '/login/connection',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+      data: {
+        email,
+        password,
+      },
+      withCredentials: true,
+    })
+      .then(res => {
+        if (res.data) {
+          alert('로그인 성공');
+          navigate('/question/list');
+        }
+      })
+      .catch(err => {
+        console.error('POST 요청 실패: ', err);
+        setEmail('');
+        setPassword('');
+        alert('등록되지 않은 회원입니다.');
+      });
+  };
+  useEffect(() => {
+    if (emailValid && passwordValid) {
+      setNotAllow(false);
+      return;
+    }
+    setNotAllow(true);
+  }, [emailValid, passwordValid]);
+
   return (
     <LoginPage>
       <a href="https://stackoverflow.com">
@@ -101,17 +173,32 @@ function Login() {
       </OauthButtonBox>
       <LoginInputBox>
         <span>Email</span>
-        <input type="email" />
+        <input type="email" value={email} onChange={handleEmail} />
+        <ErrorMessage>
+          {!emailValid && email.length > 0 && (
+            <div>올바른 이메일을 입력하세요.</div>
+          )}
+        </ErrorMessage>
         <PasswordTextBox>
           <span>Password</span>
           <a href="https://stackoverflow.com/users/account-recovery">
             Forgot password?
           </a>
         </PasswordTextBox>
-        <input type="password" />
-        <Link to="/question/list">
-          <LoginButton type="button">Log in</LoginButton>
-        </Link>
+        <input type="password" value={password} onChange={handlePw} />
+        <ErrorMessage>
+          {!passwordValid && password.length > 0 && (
+            <div>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
+          )}
+        </ErrorMessage>
+
+        <LoginButton
+          type="button"
+          disabled={notAllow}
+          onClick={onClickConfirmButton}
+        >
+          Log in
+        </LoginButton>
       </LoginInputBox>
       <BottomText />
     </LoginPage>
